@@ -13,13 +13,13 @@ export const Route = createFileRoute("/contacto")({
       {
         name: "description",
         content:
-          "Contacte a la Fundación Hariharananda Kriya Yoga: Yogacharya Lía Cristina Upegui G., fundacionhariharananda@gmail.com, Cel. 317 429 3044, Envigado, Antioquia.",
+          "Contacte a la Fundación Hariharananda Kriya Yoga: Yogacharya Lía Cristina Upegui G., fundacionhariharananda@gmail.com, Cel. +57 318 845 0112, Envigado, Antioquia.",
       },
       { property: "og:title", content: "Contacto | FHKY" },
       {
         property: "og:description",
         content:
-          "Escríbanos a fundacionhariharananda@gmail.com o llame al 317 429 3044.",
+          "Escríbanos a fundacionhariharananda@gmail.com o llame al +57 318 845 0112.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -63,8 +63,8 @@ function Contacto() {
           </p>
           <p>
             Cel:{" "}
-            <a href="tel:+573174293044" className="text-primary hover:underline">
-              317 429 3044
+            <a href="tel:+573188450112" className="text-primary hover:underline">
+              +57 318 845 0112
             </a>
           </p>
           <p>Envigado, Antioquia — Colombia</p>
