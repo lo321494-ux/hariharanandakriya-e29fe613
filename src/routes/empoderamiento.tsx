@@ -26,7 +26,7 @@ export const Route = createFileRoute("/empoderamiento")({
 function Empoderamiento() {
   return (
     <div className="section-x py-16 text-center md:py-24">
-      <h1 className="font-display text-4xl text-foreground md:text-5xl mb-10">EMPODERAMIENTO</h1>
+      <h1 className="title-fit font-display text-4xl text-foreground md:text-5xl mb-10">EMPODERAMIENTO</h1>
       
       <DocumentViewer pages={empowermPages} title="Documento de Empoderamiento" />
     </div>
