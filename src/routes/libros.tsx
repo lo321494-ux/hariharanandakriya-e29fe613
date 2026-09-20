@@ -78,7 +78,7 @@ function Libros() {
         <h2 className="font-display text-2xl text-primary">
           Seleccione el libro para leer
         </h2>
-        <ul className="mt-4 divide-y divide-border rounded-lg border border-aqua/30 bg-card/85 backdrop-blur-xl">
+        <ul className="mt-4 divide-y divide-border rounded-lg border border-gold/30 bg-card/85 backdrop-blur-xl">
           {lecturas.map((l) => (
             <li key={l.file}>
               <a

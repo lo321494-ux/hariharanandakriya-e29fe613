@@ -89,7 +89,7 @@ function Contacto() {
         </div>
 
         <form
-          className="space-y-5 rounded-lg border border-aqua/30 bg-card/85 p-6 shadow-xl shadow-aqua/10 backdrop-blur-xl md:p-8"
+          className="space-y-5 rounded-lg border border-gold/30 bg-card/85 p-6 shadow-xl shadow-primary/10 backdrop-blur-xl md:p-8"
           onSubmit={(e) => {
             e.preventDefault();
             window.location.href = mailto;

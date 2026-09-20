@@ -38,7 +38,7 @@ function Documentos() {
         {documentos.map((grupo) => (
           <section key={grupo.year}>
             <h2 className="font-display text-2xl text-primary">AÑO {grupo.year}</h2>
-            <ul className="mt-4 divide-y divide-border rounded-lg border border-aqua/30 bg-card/85 backdrop-blur-xl">
+            <ul className="mt-4 divide-y divide-border rounded-lg border border-gold/30 bg-card/85 backdrop-blur-xl">
               {grupo.items.map((doc) => (
                 <li key={grupo.year + doc.file}>
                   <a
