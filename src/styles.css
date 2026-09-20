@@ -703,10 +703,14 @@ main img.rounded-lg:hover {
     overflow-wrap: anywhere;
     transform: none;
   }
+  .page-hero h1.title-fit,
+  main > div.section-x > h1.title-fit,
   main > div.section-x > h1.hariharananda-title {
-    font-size: 1.65rem;
+    font-size: clamp(1.4rem, 6.2vw, 2.4rem);
     line-height: 1.1;
     overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
     white-space: nowrap;
   }
   main blockquote,
