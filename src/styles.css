@@ -370,6 +370,11 @@
   transform: perspective(1100px) rotateX(0deg) rotateY(0deg) translateY(-6px);
 }
 
+.image-depth--front-facing,
+.image-depth--front-facing:hover {
+  transform: translateY(-3px);
+}
+
 main > div:not(.home-page),
 main > article {
   position: relative;
@@ -399,6 +404,8 @@ main > div.section-x:not(.home-page)::before {
 }
 
 main > div.section-x > h1 {
+  position: relative;
+  z-index: 2;
   text-wrap: balance;
   transform: translateZ(1.6rem);
   text-shadow: 0 0.7rem 1.5rem oklch(0.3 0.08 54 / 0.12);
@@ -612,6 +619,12 @@ main img.rounded-lg:hover {
   border: 1px solid var(--color-border);
   background: var(--color-background);
   box-shadow: 0 1rem 2.5rem -1.5rem oklch(0.21 0.08 248 / 0.35);
+}
+
+@media (min-width: 768px) {
+  .document-viewer--compact-desktop {
+    width: min(100%, 46rem);
+  }
 }
 
 @keyframes intro-in {

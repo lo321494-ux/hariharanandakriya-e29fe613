@@ -5,11 +5,15 @@ type DocumentPage = {
 type DocumentViewerProps = {
   pages: readonly DocumentPage[];
   title: string;
+  compactDesktop?: boolean;
 };
 
-export function DocumentViewer({ pages, title }: DocumentViewerProps) {
+export function DocumentViewer({ pages, title, compactDesktop = false }: DocumentViewerProps) {
   return (
-    <div className="document-viewer" aria-label={title}>
+    <div
+      className={`document-viewer${compactDesktop ? " document-viewer--compact-desktop" : ""}`}
+      aria-label={title}
+    >
       {pages.map((page, index) => (
         <img
           key={page.url}

@@ -34,6 +34,12 @@ function Raghabananda() {
         RAGHABANANDA
       </h1>
 
+      <img
+        src={babar1.url}
+        alt="Brahmarshi Raghabananda"
+        className="image-depth image-depth--front-facing mx-auto mt-10 w-full max-w-sm"
+      />
+
       <div className="mx-auto mt-10 max-w-3xl text-center">
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
           <p>
@@ -61,13 +67,11 @@ function Raghabananda() {
         <p className="mt-8 font-display text-2xl text-foreground">¡JAI GURÚ!</p>
       </div>
 
-      <img
-        src={babar1.url}
-        alt="Brahmarshi Raghabananda"
-        className="image-depth mx-auto mt-10 w-full max-w-sm"
+      <DocumentViewer
+        pages={raghabanandaPages}
+        title="Biografía de Brahmarshi Raghabananda"
+        compactDesktop
       />
-
-      <DocumentViewer pages={raghabanandaPages} title="Biografía de Brahmarshi Raghabananda" />
     </div>
   );
 }
