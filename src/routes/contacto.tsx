@@ -4,7 +4,53 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Facebook, Mail, MessageCircle, Phone } from "lucide-react";
+import {
+  Facebook,
+  Headphones,
+  Instagram,
+  Mail,
+  MessageCircle,
+  Music2,
+  Youtube,
+} from "lucide-react";
+
+const socialLinks = [
+  {
+    href: "https://www.facebook.com/pg/HariharanandaKriyaYoga/",
+    label: "Facebook",
+    icon: Facebook,
+  },
+  {
+    href: "https://www.youtube.com/@meditacionkriyayoga",
+    label: "YouTube Meditación Kriya Yoga",
+    icon: Youtube,
+  },
+  {
+    href: "https://www.youtube.com/@KRIYACOLOMBIA",
+    label: "YouTube Kriya Colombia",
+    icon: Youtube,
+  },
+  {
+    href: "https://www.tiktok.com/@meditacionkriyayoga",
+    label: "TikTok",
+    icon: Music2,
+  },
+  {
+    href: "https://www.instagram.com/meditacionkriyayoga",
+    label: "Instagram",
+    icon: Instagram,
+  },
+  {
+    href: "https://open.spotify.com/show/3qhsiKILTnPtPZ2Ci5IWLF",
+    label: "Spotify",
+    icon: Headphones,
+  },
+  {
+    href: "http://raghabananda.blogspot.com/",
+    label: "Blog Raghabananda",
+    icon: MessageCircle,
+  },
+] as const;
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
@@ -69,22 +115,17 @@ function Contacto() {
           </p>
           <p>Envigado, Antioquia — Colombia</p>
           <div className="flex flex-wrap gap-3 pt-3">
-            <a
-              href="https://www.facebook.com/pg/HariharanandaKriyaYoga/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-primary transition-colors hover:bg-accent"
-            >
-              <Facebook className="h-4 w-4" /> Facebook
-            </a>
-            <a
-              href="http://raghabananda.blogspot.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-primary transition-colors hover:bg-accent"
-            >
-              <MessageCircle className="h-4 w-4" /> Blog Raghabananda
-            </a>
+            {socialLinks.map(({ href, label, icon: Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-primary transition-colors hover:bg-accent"
+              >
+                <Icon className="h-4 w-4 shrink-0" /> {label}
+              </a>
+            ))}
           </div>
         </div>
 
