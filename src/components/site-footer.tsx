@@ -4,7 +4,7 @@ import logo from "@/assets/logo.png.asset.json";
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 mt-24 overflow-hidden border-t border-aqua/25 bg-gradient-to-br from-ink via-ink to-aqua/25 text-ink-foreground shadow-[0_-20px_70px_oklch(0.55_0.12_181/0.12)]">
+    <footer className="relative z-10 mt-24 overflow-hidden border-t border-gold/25 bg-gradient-to-br from-ink via-ink to-primary/20 text-ink-foreground shadow-[0_-20px_70px_oklch(0.55_0.1_65/0.12)]">
       <div className="footer-radiance" aria-hidden="true" />
       <div className="section-x grid gap-12 py-16 lg:grid-cols-3">
         <div className="relative">
