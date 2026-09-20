@@ -181,6 +181,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-anchor: none;
   }
 
   ::selection {

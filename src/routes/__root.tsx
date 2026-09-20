@@ -8,7 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useLayoutEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -140,8 +140,18 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
+    let frame = 0;
+    const resetScroll = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    resetScroll();
+    frame = window.requestAnimationFrame(resetScroll);
+    const timer = window.setTimeout(resetScroll, 250);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
   }, [location.pathname]);
 
   return (
