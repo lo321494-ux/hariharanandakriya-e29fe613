@@ -27,7 +27,7 @@ export const Route = createFileRoute("/documentos")({
 function Documentos() {
   return (
     <div className="section-x py-16 md:py-24">
-      <h1 className="text-center font-display text-4xl text-foreground md:text-5xl">
+      <h1 className="title-fit text-center font-display text-4xl text-foreground md:text-5xl">
         Documentos
       </h1>
       <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">

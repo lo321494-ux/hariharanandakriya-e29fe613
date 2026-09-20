@@ -30,7 +30,7 @@ export const Route = createFileRoute("/raghabananda")({
 function Raghabananda() {
   return (
     <div className="section-x py-16 md:py-24">
-      <h1 className="text-center font-display text-4xl text-foreground md:text-5xl">
+      <h1 className="title-fit text-center font-display text-4xl text-foreground md:text-5xl">
         RAGHABANANDA
       </h1>
 
