@@ -39,7 +39,7 @@ const significados = [
 function Hariharananda() {
   return (
     <div className="section-x py-16 md:py-24">
-      <h1 className="text-center font-display text-4xl text-foreground md:text-5xl">
+      <h1 className="whitespace-nowrap text-center font-display text-[1.65rem] text-foreground sm:text-4xl md:text-5xl">
         HARIHARANANDA
       </h1>
 
