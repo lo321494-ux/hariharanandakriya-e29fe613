@@ -91,12 +91,6 @@ function KriyaYoga() {
         KRIYA YOGA
       </h1>
 
-      <img
-        src={kriyaBaba.url}
-        alt="Baba enseñando Kriya Yoga"
-        className="image-depth mx-auto mt-10 w-full max-w-md"
-      />
-
       <div className="mx-auto mt-12 max-w-3xl space-y-8">
         {ensenanzas.map((e) => (
           <blockquote
@@ -143,6 +137,12 @@ function KriyaYoga() {
             está en la fontanela.
           </p>
         </div>
+
+        <img
+          src={kriyaBaba.url}
+          alt="Baba enseñando Kriya Yoga"
+          className="image-depth mx-auto mt-8 w-full max-w-md"
+        />
       </section>
 
       <p className="mt-10 text-center font-display text-2xl text-foreground">¡Jai Gurú!</p>

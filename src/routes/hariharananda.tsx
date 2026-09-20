@@ -83,7 +83,11 @@ function Hariharananda() {
         </blockquote>
       </div>
 
-      <DocumentViewer pages={hariharanandaPages} title="Biografía de Paramahamsa Hariharananda" />
+      <DocumentViewer
+        pages={hariharanandaPages}
+        title="Biografía de Paramahamsa Hariharananda"
+        compactDesktop
+      />
     </div>
   );
 }
