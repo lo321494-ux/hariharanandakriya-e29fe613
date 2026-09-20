@@ -11,6 +11,12 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { Toaster } from "@/components/ui/sonner";
+import { IntroSplash } from "@/components/intro-splash";
+import { Button } from "@/components/ui/button";
+
 
 function NotFoundComponent() {
   return (
@@ -51,7 +57,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
+          <Button
             onClick={() => {
               router.invalidate();
               reset();
@@ -59,7 +65,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Try again
-          </button>
+          </Button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
@@ -77,23 +83,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Fundación Hariharananda Kriya Yoga" },
+      {
+        name: "description",
+        content:
+          "Fundación Hariharananda Kriya Yoga (FHKY): enseñanza y práctica de Kriya Yoga en el linaje de Paramahamsa Hariharananda y Brahmarshi Raghabananda. Envigado, Antioquia, Colombia.",
+      },
+      { property: "og:site_name", content: "Fundación Hariharananda Kriya Yoga" },
+      { property: "og:locale", content: "es_CO" },
+      { property: "og:title", content: "Fundación Hariharananda Kriya Yoga" },
+      {
+        property: "og:description",
+        content:
+          "Enseñanza y práctica de Kriya Yoga en el linaje de Paramahamsa Hariharananda y Brahmarshi Raghabananda.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap",
+      },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -102,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>
@@ -119,8 +140,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="site-stage flex min-h-screen flex-col bg-background">
+        <IntroSplash />
+        <SiteHeader />
+        <main className="relative z-10 flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
+      <Toaster />
     </QueryClientProvider>
   );
 }
+
