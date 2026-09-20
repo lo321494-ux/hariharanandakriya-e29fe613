@@ -3,7 +3,6 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
-  useLocation,
   useRouter,
   HeadContent,
   Scripts,
@@ -138,21 +137,6 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const location = useLocation();
-
-  useEffect(() => {
-    let frame = 0;
-    const resetScroll = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    resetScroll();
-    frame = window.requestAnimationFrame(resetScroll);
-    const timer = window.setTimeout(resetScroll, 250);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(timer);
-    };
-  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

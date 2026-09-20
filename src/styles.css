@@ -181,7 +181,6 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-anchor: none;
   }
 
   ::selection {
@@ -412,7 +411,7 @@ main > div.section-x > h1 {
   width: 100%;
   overflow: visible;
   text-wrap: balance;
-  transform: translateZ(1.6rem);
+  transform: none;
   text-shadow: 0 0.7rem 1.5rem oklch(0.3 0.08 54 / 0.12);
 }
 
@@ -702,7 +701,7 @@ main img.rounded-lg:hover {
     font-size: clamp(2.25rem, 11vw, 3rem);
     line-height: 1.08;
     overflow-wrap: anywhere;
-    transform: translateZ(0.6rem);
+    transform: none;
   }
   main blockquote,
   main form,
