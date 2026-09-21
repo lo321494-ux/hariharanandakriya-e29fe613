@@ -349,7 +349,8 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
                       type="button"
                       variant="ghost"
                       onClick={() => goTo(id)}
-                      className={`h-10 shrink-0 snap-start justify-start px-3 lg:h-9 lg:w-full ${
+                      data-active={view === id}
+                      className={`member-nav-item h-10 shrink-0 snap-start justify-start px-3 lg:h-9 lg:w-full ${
                         view === id
                           ? "bg-ink-foreground/12 text-gold"
                           : "text-ink-foreground/65 hover:bg-ink-foreground/10 hover:text-ink-foreground"
@@ -402,30 +403,33 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
             ) : null}
           </header>
 
-          {view === "inicio" ? (
-            <DashboardHome progress={progress} completed={completed.length} onNavigate={goTo} />
-          ) : null}
-          {view === "clases" ? <ClassesView /> : null}
-          {view === "satsangas" ? <SatsangasView onNavigate={goTo} /> : null}
-          {view === "proximos" ? <UpcomingView /> : null}
-          {view === "audios" ? (
-            <AudioLibrary
-              items={filteredAudios}
-              active={activeAudio}
-              completed={completed}
-              onPlay={setActiveAudio}
-              onToggle={toggleComplete}
-            />
-          ) : null}
-          {view === "biblioteca" ? (
-            <DocumentLibrary
-              items={filteredDocuments}
-              completed={completed}
-              onToggle={toggleComplete}
-              onRead={setActiveDocument}
-            />
-          ) : null}
-          {view === "videos" ? <VideoLibrary /> : null}
+          <div key={view} className="member-rise">
+            {view === "inicio" ? (
+              <DashboardHome progress={progress} completed={completed.length} onNavigate={goTo} />
+            ) : null}
+            {view === "clases" ? <ClassesView /> : null}
+            {view === "satsangas" ? <SatsangasView onNavigate={goTo} /> : null}
+            {view === "proximos" ? <UpcomingView /> : null}
+            {view === "audios" ? (
+              <AudioLibrary
+                items={filteredAudios}
+                active={activeAudio}
+                completed={completed}
+                onPlay={setActiveAudio}
+                onToggle={toggleComplete}
+              />
+            ) : null}
+            {view === "biblioteca" ? (
+              <DocumentLibrary
+                items={filteredDocuments}
+                completed={completed}
+                onToggle={toggleComplete}
+                onRead={setActiveDocument}
+              />
+            ) : null}
+            {view === "videos" ? <VideoLibrary /> : null}
+          </div>
+
         </section>
       </div>
 
@@ -447,13 +451,31 @@ function DashboardHome({
 }) {
   return (
      <div className="py-6 sm:py-8">
-      <div className="max-w-3xl">
-        <p className="font-display text-2xl text-foreground">Bienvenido a tu espacio de estudio.</p>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Aquí encuentras el programa de clases, los satsangas de la comunidad y toda la biblioteca de
-          enseñanzas del linaje de Kriya Yoga.
-        </p>
+      <div className="member-banner member-rise rounded-lg border border-gold/25 p-6 text-ink-foreground shadow-lg sm:p-9">
+        <div className="relative z-10 max-w-3xl">
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-gold">Campus kriyaban</p>
+          <p className="mt-3 font-display text-2xl leading-tight sm:text-4xl">
+            Bienvenido a tu espacio de estudio.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-ink-foreground/70">
+            Aquí encuentras el programa de clases, los satsangas de la comunidad y toda la biblioteca de
+            enseñanzas del linaje de Kriya Yoga.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button onClick={() => onNavigate("clases")}>
+              <GraduationCap className="h-4 w-4" /> Continuar el programa
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => onNavigate("audios")}
+              className="border-gold/40 bg-transparent text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground"
+            >
+              <Headphones className="h-4 w-4" /> Escuchar enseñanzas
+            </Button>
+          </div>
+        </div>
       </div>
+
        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 xl:grid-cols-4">
         <Stat
           icon={GraduationCap}
@@ -546,7 +568,7 @@ function Stat({
       <button
         type="button"
         onClick={onClick}
-        className="rounded-md border border-border bg-background p-4 text-left shadow-sm transition-colors hover:border-primary/50 sm:p-5"
+        className="member-card rounded-md border border-border bg-background p-4 text-left shadow-sm sm:p-5"
       >
         {content}
       </button>
@@ -575,7 +597,7 @@ function ModuleButton({
     <Button
       variant="outline"
       onClick={onClick}
-       className="h-auto min-w-0 justify-start gap-3 whitespace-normal border-gold/30 bg-background p-4 text-left shadow-sm sm:gap-4 sm:p-5"
+       className="member-card h-auto min-w-0 justify-start gap-3 whitespace-normal border-gold/30 bg-background p-4 text-left shadow-sm sm:gap-4 sm:p-5"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
         <Icon className="h-5 w-5" />
@@ -597,7 +619,7 @@ function ClassesView() {
       </p>
        <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 xl:grid-cols-2">
         {courseModules.map((module, index) => (
-           <article key={module.id} className="rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
+           <article key={module.id} className="member-card rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
             <div className="flex items-center justify-between gap-4">
               <p className="text-xs uppercase tracking-[0.18em] text-primary">{module.level}</p>
               <span className="font-display text-2xl text-muted-foreground/50">
@@ -634,7 +656,7 @@ function SatsangasView({ onNavigate }: { onNavigate: (view: View) => void }) {
       </p>
        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5">
         {satsangas.map((item) => (
-           <article key={item.id} className="rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
+           <article key={item.id} className="member-card rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Users className="h-5 w-5" />
             </span>
@@ -678,7 +700,7 @@ function UpcomingView() {
 
 function SessionCard({ session }: { session: (typeof upcomingSessions)[number] }) {
   return (
-     <article className="grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-4 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-5">
+     <article className="member-card grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-4 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-5">
       <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
         <CalendarDays className="h-5 w-5" />
       </span>
@@ -728,7 +750,7 @@ function AudioLibrary({
         {items.map((item, index) => (
           <article
             key={item.id}
-             className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-3 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-4"
+             className="member-card grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-3 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-4"
           >
             <Button
               size="icon"
@@ -781,7 +803,7 @@ function DocumentLibrary({
         {items.map((item) => (
           <article
             key={item.id}
-             className="flex min-h-0 flex-col rounded-md border border-border bg-background p-4 shadow-sm sm:min-h-56 sm:p-5"
+             className="member-card flex min-h-0 flex-col rounded-md border border-border bg-background p-4 shadow-sm sm:min-h-56 sm:p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">

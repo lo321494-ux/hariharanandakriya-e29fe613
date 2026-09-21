@@ -231,6 +231,140 @@
   perspective: none !important;
 }
 
+@keyframes member-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes member-sheen {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes member-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.12);
+  }
+}
+
+.member-rise {
+  opacity: 0;
+  animation: member-rise 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.member-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.member-card::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(115deg, transparent 35%, oklch(1 0 0 / 0.16) 50%, transparent 65%);
+  transition: opacity 0.35s ease;
+}
+
+.member-card:hover,
+.member-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: oklch(0.8 0.15 79 / 0.55);
+  box-shadow: 0 18px 38px -22px oklch(0.2 0.06 250 / 0.55);
+}
+
+.member-card:hover::after {
+  opacity: 1;
+  animation: member-sheen 0.9s ease forwards;
+}
+
+.member-banner {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 140% at 88% 12%, oklch(0.8 0.15 79 / 0.22), transparent 58%),
+    linear-gradient(120deg, var(--color-ink), oklch(0.3 0.1 239));
+}
+
+.member-banner::before {
+  position: absolute;
+  content: "";
+  inset: -40% -10% auto auto;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, oklch(0.8 0.15 79 / 0.3), transparent 68%);
+  animation: member-glow 7s ease-in-out infinite;
+}
+
+.member-nav-item {
+  position: relative;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.28s ease,
+    color 0.28s ease;
+}
+
+.member-nav-item::before {
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 2px;
+  content: "";
+  border-radius: 9999px;
+  background: var(--color-gold, oklch(0.8 0.15 79));
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.member-nav-item[data-active="true"]::before {
+  transform: scaleY(1);
+}
+
+.member-nav-item:hover {
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-rise,
+  .member-banner::before,
+  .member-card::after {
+    animation: none;
+  }
+
+  .member-rise {
+    opacity: 1;
+  }
+
+  .member-card:hover {
+    transform: none;
+  }
+}
+
+
 .page-hero {
   position: relative;
   overflow: hidden;
