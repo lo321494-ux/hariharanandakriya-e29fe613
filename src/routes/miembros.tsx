@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   BookOpen,
   CalendarDays,
@@ -734,9 +735,9 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
-       className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 sm:p-4 lg:p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/85 sm:p-4 lg:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={`Lectura: ${document.title}`}
@@ -770,7 +771,8 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
           allow="autoplay"
         />
       </div>
-    </div>
+    </div>,
+    window.document.body,
   );
 }
 
