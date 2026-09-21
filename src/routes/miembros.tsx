@@ -138,7 +138,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-12 text-ink-foreground sm:px-5 sm:py-16 md:min-h-[calc(100svh-6rem)]">
+    <section className="member-app-shell relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-12 text-ink-foreground sm:px-5 sm:py-16 md:min-h-[calc(100svh-6rem)]">
       <div
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,var(--color-primary)/0.22,transparent_34rem)]"
         aria-hidden="true"
