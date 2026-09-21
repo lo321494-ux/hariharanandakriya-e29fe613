@@ -158,7 +158,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,var(--color-gold)/0.16,transparent_28rem)]"
             aria-hidden="true"
           />
-          <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="relative w-52" />
+          <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="relative mb-10 w-44" />
           <div className="relative">
             <p className="text-xs uppercase tracking-[0.28em] text-gold">Espacio de estudio</p>
             <h1 className="mt-5 max-w-md font-display text-5xl leading-tight text-ink-foreground">
