@@ -8,6 +8,8 @@ import {
   CircleUserRound,
   Download,
   ExternalLink,
+  Eye,
+  EyeOff,
   GraduationCap,
   Headphones,
   Home,
