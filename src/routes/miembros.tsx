@@ -18,6 +18,7 @@ import {
   LogOut,
   Play,
   Search,
+  ShieldCheck,
   Users,
   Video,
   X,
