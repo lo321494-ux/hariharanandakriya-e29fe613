@@ -403,30 +403,33 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
             ) : null}
           </header>
 
-          {view === "inicio" ? (
-            <DashboardHome progress={progress} completed={completed.length} onNavigate={goTo} />
-          ) : null}
-          {view === "clases" ? <ClassesView /> : null}
-          {view === "satsangas" ? <SatsangasView onNavigate={goTo} /> : null}
-          {view === "proximos" ? <UpcomingView /> : null}
-          {view === "audios" ? (
-            <AudioLibrary
-              items={filteredAudios}
-              active={activeAudio}
-              completed={completed}
-              onPlay={setActiveAudio}
-              onToggle={toggleComplete}
-            />
-          ) : null}
-          {view === "biblioteca" ? (
-            <DocumentLibrary
-              items={filteredDocuments}
-              completed={completed}
-              onToggle={toggleComplete}
-              onRead={setActiveDocument}
-            />
-          ) : null}
-          {view === "videos" ? <VideoLibrary /> : null}
+          <div key={view} className="member-rise">
+            {view === "inicio" ? (
+              <DashboardHome progress={progress} completed={completed.length} onNavigate={goTo} />
+            ) : null}
+            {view === "clases" ? <ClassesView /> : null}
+            {view === "satsangas" ? <SatsangasView onNavigate={goTo} /> : null}
+            {view === "proximos" ? <UpcomingView /> : null}
+            {view === "audios" ? (
+              <AudioLibrary
+                items={filteredAudios}
+                active={activeAudio}
+                completed={completed}
+                onPlay={setActiveAudio}
+                onToggle={toggleComplete}
+              />
+            ) : null}
+            {view === "biblioteca" ? (
+              <DocumentLibrary
+                items={filteredDocuments}
+                completed={completed}
+                onToggle={toggleComplete}
+                onRead={setActiveDocument}
+              />
+            ) : null}
+            {view === "videos" ? <VideoLibrary /> : null}
+          </div>
+
         </section>
       </div>
 
