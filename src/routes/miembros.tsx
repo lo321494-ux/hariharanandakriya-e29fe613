@@ -395,9 +395,24 @@ function DashboardHome({
         </p>
       </div>
        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 xl:grid-cols-4">
-        <Stat icon={GraduationCap} value={courseModules.length} label="Módulos de clase" />
-        <Stat icon={Headphones} value={memberAudios.length} label="Audios" />
-        <Stat icon={BookOpen} value={memberDocuments.length} label="Documentos" />
+        <Stat
+          icon={GraduationCap}
+          value={courseModules.length}
+          label="Módulos de clase"
+          onClick={() => onNavigate("clases")}
+        />
+        <Stat
+          icon={Headphones}
+          value={memberAudios.length}
+          label="Audios"
+          onClick={() => onNavigate("audios")}
+        />
+        <Stat
+          icon={BookOpen}
+          value={memberDocuments.length}
+          label="Documentos"
+          onClick={() => onNavigate("biblioteca")}
+        />
         <Stat icon={Check} value={completed} label="Completados" />
       </div>
        <section className="mt-8 border-y border-border py-6 sm:mt-10 sm:py-8">
