@@ -436,6 +436,22 @@
   border-left-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-border));
 }
 
+.member-audio-player {
+  background:
+    linear-gradient(115deg, color-mix(in oklab, var(--color-gold) 9%, transparent), transparent 45%),
+    var(--color-card);
+}
+
+.member-audio-control {
+  display: block;
+  height: 3rem;
+  accent-color: var(--color-primary);
+}
+
+.member-audio-control::-webkit-media-controls-enclosure {
+  border-radius: var(--radius-md);
+}
+
 @keyframes member-rise {
   from {
     opacity: 0;
