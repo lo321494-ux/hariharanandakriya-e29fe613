@@ -5,6 +5,7 @@ import {
   BookOpen,
   CalendarDays,
   Check,
+  ChevronRight,
   CircleUserRound,
   Download,
   ExternalLink,
@@ -381,11 +382,11 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
           </div>
         </aside>
 
-        <section className="min-w-0 px-4 py-6 sm:px-7 sm:py-8 lg:px-12 lg:py-10">
-          <header className="grid grid-cols-1 gap-4 border-b border-border pb-6 sm:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)] sm:items-end sm:gap-6 lg:pb-8">
+        <section className="member-study-surface min-w-0 px-4 py-6 sm:px-7 sm:py-8 lg:px-12 lg:py-10">
+          <header className="member-page-header grid grid-cols-1 gap-4 pb-6 sm:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)] sm:items-end sm:gap-6 lg:pb-8">
             <div className="min-w-0">
-              <p className="text-xs uppercase tracking-[0.24em] text-primary">Fundación Hariharananda</p>
-              <h1 className="mt-1 truncate font-display text-3xl text-foreground sm:mt-2 sm:text-4xl">
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">Fundación Hariharananda</p>
+              <h1 className="member-view-title mt-1 truncate font-display text-3xl text-foreground sm:mt-2 sm:text-5xl">
                 {allNavItems.find((item) => item.id === view)?.label}
               </h1>
             </div>
@@ -451,10 +452,10 @@ function DashboardHome({
 }) {
   return (
      <div className="py-6 sm:py-8">
-      <div className="member-banner member-rise rounded-lg border border-gold/25 p-6 text-ink-foreground shadow-lg sm:p-9">
+      <div className="member-banner member-rise rounded-lg border border-gold/25 p-6 text-ink-foreground shadow-lg sm:p-9 lg:p-11">
         <div className="relative z-10 max-w-3xl">
           <p className="text-[0.68rem] uppercase tracking-[0.24em] text-gold">Campus kriyaban</p>
-          <p className="mt-3 font-display text-2xl leading-tight sm:text-4xl">
+          <p className="mt-3 max-w-2xl font-display text-3xl leading-tight sm:text-5xl">
             Bienvenido a tu espacio de estudio.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-ink-foreground/70">
@@ -497,7 +498,7 @@ function DashboardHome({
         />
         <Stat icon={Check} value={completed} label="Completados" />
       </div>
-       <section className="mt-8 border-y border-border py-6 sm:mt-10 sm:py-8">
+       <section className="member-progress-panel mt-8 rounded-lg border border-gold/25 p-5 sm:mt-10 sm:p-7">
          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div>
             <p className="text-sm font-medium text-foreground">Tu recorrido</p>
@@ -509,7 +510,7 @@ function DashboardHome({
       </section>
 
        <section className="mt-8 sm:mt-10">
-        <h2 className="font-display text-xl text-foreground">Agenda de la comunidad</h2>
+        <SectionHeading eyebrow="Próximamente" title="Agenda de la comunidad" />
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {upcomingSessions.slice(0, 2).map((item) => (
             <SessionCard key={item.id} session={item} />
@@ -557,9 +558,9 @@ function Stat({
 }) {
   const content = (
     <>
-      <Icon className="h-5 w-5 text-primary" />
-      <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
-      <p className="text-sm text-muted-foreground">{label}</p>
+      <span className="member-stat-icon"><Icon className="h-5 w-5" /></span>
+      <p className="mt-4 font-display text-3xl text-foreground sm:mt-6 sm:text-4xl">{value}</p>
+      <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">{label}</p>
     </>
   );
 
@@ -568,7 +569,7 @@ function Stat({
       <button
         type="button"
         onClick={onClick}
-        className="member-card rounded-md border border-border bg-background p-4 text-left shadow-sm sm:p-5"
+        className="member-card member-stat-card rounded-lg border border-border bg-card p-4 text-left shadow-sm sm:p-5"
       >
         {content}
       </button>
@@ -576,7 +577,7 @@ function Stat({
   }
 
   return (
-     <div className="rounded-md border border-border bg-background p-4 shadow-sm sm:p-5">
+     <div className="member-stat-card rounded-lg border border-border bg-card p-4 shadow-sm sm:p-5">
       {content}
     </div>
   );
@@ -597,15 +598,16 @@ function ModuleButton({
     <Button
       variant="outline"
       onClick={onClick}
-       className="member-card h-auto min-w-0 justify-start gap-3 whitespace-normal border-gold/30 bg-background p-4 text-left shadow-sm sm:gap-4 sm:p-5"
+       className="member-card member-module-link h-auto min-w-0 justify-start gap-3 whitespace-normal border-gold/30 bg-card p-4 text-left shadow-sm sm:gap-4 sm:p-5"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
         <Icon className="h-5 w-5" />
       </span>
       <span className="min-w-0">
-        <span className="block font-display text-lg text-foreground">{title}</span>
+        <span className="block font-display text-xl text-foreground">{title}</span>
         <span className="mt-1 block text-xs font-normal text-muted-foreground">{detail}</span>
       </span>
+      <ChevronRight className="ml-auto h-4 w-4 shrink-0 text-primary" />
     </Button>
   );
 }
@@ -613,20 +615,21 @@ function ModuleButton({
 function ClassesView() {
   return (
      <div className="py-6 sm:py-8">
-      <p className="max-w-3xl leading-relaxed text-muted-foreground">
-        Plan de formación en tres niveles. Cada módulo reúne las lecciones del tema y una práctica
-        concreta para la semana; el material de apoyo está en la biblioteca y en los audios.
-      </p>
+       <SectionIntroduction
+         eyebrow="Ruta formativa"
+         title="Un camino de estudio en tres niveles"
+         description="Cada módulo reúne las lecciones del tema y una práctica concreta para la semana; el material de apoyo está en la biblioteca y en los audios."
+       />
        <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 xl:grid-cols-2">
         {courseModules.map((module, index) => (
-           <article key={module.id} className="member-card rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
+            <article key={module.id} className="member-card member-course-card rounded-lg border border-border bg-card p-5 shadow-sm sm:p-7">
             <div className="flex items-center justify-between gap-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-primary">{module.level}</p>
-              <span className="font-display text-2xl text-muted-foreground/50">
+               <p className="member-level-pill text-xs font-medium uppercase tracking-[0.18em] text-primary">{module.level}</p>
+               <span className="font-display text-4xl text-primary/25">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
-            <h2 className="mt-3 font-display text-xl text-foreground">{module.title}</h2>
+             <h2 className="mt-5 font-display text-2xl leading-tight text-foreground">{module.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{module.summary}</p>
             <ul className="mt-5 space-y-2 border-t border-border pt-5">
               {module.lessons.map((lesson) => (
@@ -636,9 +639,11 @@ function ClassesView() {
                 </li>
               ))}
             </ul>
-            <p className="mt-5 rounded-md bg-primary/5 p-4 text-sm leading-relaxed text-foreground">
-              <span className="font-medium">Práctica de la semana: </span>
+             <p className="member-practice-note mt-5 rounded-md border-l-2 border-gold bg-primary/5 p-4 text-sm leading-relaxed text-foreground">
+               <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-primary">Práctica de la semana</span>
+               <span className="mt-2 block">
               {module.practice}
+               </span>
             </p>
           </article>
         ))}
@@ -650,17 +655,14 @@ function ClassesView() {
 function SatsangasView({ onNavigate }: { onNavigate: (view: View) => void }) {
   return (
      <div className="py-6 sm:py-8">
-      <p className="max-w-3xl leading-relaxed text-muted-foreground">
-        El satsanga es el encuentro de la comunidad alrededor de la enseñanza. Estos son los cuatro
-        encuentros regulares de la Fundación.
-      </p>
+       <SectionIntroduction eyebrow="Comunidad" title="Encuentros para compartir la práctica" description="El satsanga es el encuentro de la comunidad alrededor de la enseñanza. Estos son los cuatro encuentros regulares de la Fundación." />
        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5">
         {satsangas.map((item) => (
-           <article key={item.id} className="member-card rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
+            <article key={item.id} className="member-card member-community-card rounded-lg border border-border bg-card p-5 shadow-sm sm:p-7">
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Users className="h-5 w-5" />
             </span>
-            <h2 className="mt-5 font-display text-xl text-foreground">{item.title}</h2>
+             <h2 className="mt-5 font-display text-2xl text-foreground">{item.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.focus}</p>
             <dl className="mt-5 space-y-1 border-t border-border pt-4 text-sm">
               <div className="flex gap-2">
@@ -685,10 +687,7 @@ function SatsangasView({ onNavigate }: { onNavigate: (view: View) => void }) {
 function UpcomingView() {
   return (
      <div className="py-6 sm:py-8">
-      <p className="max-w-3xl leading-relaxed text-muted-foreground">
-        Calendario regular de encuentros. La coordinación confirma cada fecha por los canales de la
-        Fundación antes de la reunión.
-      </p>
+       <SectionIntroduction eyebrow="Agenda" title="Próximos encuentros" description="Calendario regular de encuentros. La coordinación confirma cada fecha por los canales de la Fundación antes de la reunión." />
       <div className="mt-8 grid gap-3">
         {upcomingSessions.map((session) => (
           <SessionCard key={session.id} session={session} />
@@ -700,7 +699,7 @@ function UpcomingView() {
 
 function SessionCard({ session }: { session: (typeof upcomingSessions)[number] }) {
   return (
-     <article className="member-card grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-4 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-5">
+     <article className="member-card member-session-card grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-5 sm:p-6">
       <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
         <CalendarDays className="h-5 w-5" />
       </span>
@@ -745,12 +744,12 @@ function AudioLibrary({
           />
         </div>
       ) : null}
-      <p className="mb-5 text-sm text-muted-foreground">{items.length} grabaciones encontradas</p>
+       <SectionIntroduction eyebrow="Escucha consciente" title="Enseñanzas para acompañar tu práctica" description={`${items.length} grabaciones encontradas. Reproduce cada enseñanza y marca tu avance.`} compact />
       <div className="grid gap-3">
         {items.map((item, index) => (
           <article
             key={item.id}
-             className="member-card grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-3 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-4"
+             className="member-card member-audio-row grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 rounded-lg border border-border bg-card p-3 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-4"
           >
             <Button
               size="icon"
@@ -796,14 +795,12 @@ function DocumentLibrary({
 }) {
   return (
      <div className="py-6 sm:py-8">
-      <p className="mb-5 text-sm text-muted-foreground">
-        {items.length} lecturas encontradas · se abren dentro de la página
-      </p>
+       <SectionIntroduction eyebrow="Biblioteca del linaje" title="Lecturas para profundizar" description={`${items.length} lecturas encontradas · se abren dentro de la página`} compact />
        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
         {items.map((item) => (
           <article
             key={item.id}
-             className="member-card flex min-h-0 flex-col rounded-md border border-border bg-background p-4 shadow-sm sm:min-h-56 sm:p-5"
+             className="member-card member-document-card flex min-h-0 flex-col rounded-lg border border-border bg-card p-4 shadow-sm sm:min-h-64 sm:p-6"
           >
             <div className="flex items-start justify-between gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -821,7 +818,7 @@ function DocumentLibrary({
               </Button>
             </div>
              <p className="mt-4 text-xs uppercase tracking-[0.14em] text-muted-foreground sm:mt-5">{item.collection}</p>
-            <h2 className="mt-2 line-clamp-3 font-display text-lg leading-snug text-foreground">{item.title}</h2>
+             <h2 className="mt-2 line-clamp-3 font-display text-xl leading-snug text-foreground">{item.title}</h2>
              <div className="mt-auto flex gap-2 pt-5 sm:pt-6">
               <Button size="sm" className="flex-1" onClick={() => onRead(item)}>
                 <BookOpen className="h-4 w-4" /> Leer aquí
@@ -923,6 +920,35 @@ function VideoLibrary() {
           </a>
         </Button>
       </div>
+    </div>
+  );
+}
+
+function SectionIntroduction({
+  eyebrow,
+  title,
+  description,
+  compact = false,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  compact?: boolean;
+}) {
+  return (
+    <div className={`member-section-intro ${compact ? "mb-6" : ""}`}>
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</p>
+      <h2 className="mt-2 max-w-3xl font-display text-2xl leading-tight text-foreground sm:text-3xl">{title}</h2>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">{description}</p>
+    </div>
+  );
+}
+
+function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div>
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</p>
+      <h2 className="mt-1 font-display text-2xl text-foreground">{title}</h2>
     </div>
   );
 }
