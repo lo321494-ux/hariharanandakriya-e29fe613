@@ -9,3 +9,4 @@
 - [x] Reformular visualmente los módulos y la tipografía del área de miembros
 - [x] Renovar la pantalla de ingreso del área de miembros en todos los dispositivos
 - [x] Corregir y reorganizar la reproducción y descarga de audios y documentos
+- [x] Simplificar la pantalla de ingreso para mostrar únicamente Bienvenido y el formulario

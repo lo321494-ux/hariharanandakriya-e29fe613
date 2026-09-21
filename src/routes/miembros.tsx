@@ -19,12 +19,10 @@ import {
   LogOut,
   Play,
   Search,
-  ShieldCheck,
   Users,
   Video,
   X,
 } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
@@ -142,36 +140,13 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
   return (
     <section className="member-login member-app-shell relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-7 text-ink-foreground sm:px-7 sm:py-10 md:min-h-[calc(100svh-6rem)] lg:px-10">
       <div className="member-login__lines" aria-hidden="true" />
-      <div className="member-login__frame relative grid w-full max-w-6xl overflow-hidden border border-gold/30 bg-background md:grid-cols-[minmax(0,0.92fr)_minmax(24rem,0.72fr)]">
-        <div className="member-login__welcome relative flex min-h-[15rem] flex-col overflow-hidden bg-ink p-6 sm:min-h-[19rem] sm:p-9 md:min-h-[36rem] md:p-10 lg:p-14">
-          <div className="member-login__brand relative z-10 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-            <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="w-36 sm:w-44" />
-            <span className="member-login__edition hidden text-xs uppercase text-gold/75 sm:block">Campus · 01</span>
-          </div>
-          <div className="relative z-10 mt-auto max-w-xl pt-10">
-            <p className="member-login__eyebrow text-xs font-semibold uppercase text-gold">Espacio de estudio</p>
-            <h1 className="mt-3 max-w-lg font-display text-3xl leading-tight text-ink-foreground sm:text-4xl lg:mt-5 lg:text-5xl">
-              Un lugar para profundizar en la práctica.
-            </h1>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-foreground/65 sm:text-base lg:mt-5">
-              Enseñanzas, estudio y comunidad para acompañar tu camino de Kriya Yoga.
-            </p>
-          </div>
-          <div className="member-login__seal" aria-hidden="true"><span>ॐ</span></div>
-        </div>
-
-        <div className="member-login__access relative flex items-center p-5 sm:p-9 md:p-10 lg:p-14">
+      <div className="member-login__frame relative w-full max-w-lg overflow-hidden border border-gold/30 bg-background">
+        <div className="member-login__access relative flex items-center p-6 sm:p-10 lg:p-14">
           <form className="member-login__form mx-auto w-full max-w-sm" onSubmit={submit}>
-            <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-primary/10 text-primary">
-                <LockKeyhole className="h-5 w-5" />
-              </div>
-              <div className="min-w-0">
-                <p className="member-login__eyebrow text-xs font-semibold uppercase text-primary">Área de miembros</p>
-                <p className="mt-1 text-xs text-muted-foreground">Acceso privado para kriyabanes</p>
-              </div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-primary/10 text-primary">
+              <LockKeyhole className="h-5 w-5" />
             </div>
-            <h2 className="mt-7 font-display text-4xl leading-none text-foreground sm:text-5xl">Bienvenido</h2>
+            <h1 className="mt-6 font-display text-4xl leading-none text-foreground sm:text-5xl">Bienvenido</h1>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Continúa tu recorrido de estudio ingresando tus datos de acceso.
             </p>
@@ -223,37 +198,10 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
             <Button type="submit" className="member-login__submit mt-7 h-12 w-full text-base">
               Entrar al campus <ChevronRight className="h-4 w-4" />
             </Button>
-            <div className="mt-6 grid grid-cols-3 border-y border-border py-4 md:hidden">
-              <LoginHighlight icon={Headphones} value={`${memberAudios.length}`} label="Audios" />
-              <LoginHighlight icon={Library} value={`${memberDocuments.length}`} label="Lecturas" />
-              <LoginHighlight icon={GraduationCap} value={`${courseModules.length}`} label="Módulos" />
-            </div>
-            <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
-              <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-              Acceso reservado para miembros autorizados
-            </p>
           </form>
         </div>
       </div>
     </section>
-  );
-}
-
-function LoginHighlight({
-  icon: Icon,
-  value,
-  label,
-}: {
-  icon: typeof Home;
-  value: string;
-  label: string;
-}) {
-  return (
-    <div className="text-center md:text-left">
-      <Icon className="mx-auto h-4 w-4 text-primary md:mx-0 md:text-gold" />
-      <p className="mt-1 font-display text-xl text-foreground md:mt-2 md:text-2xl md:text-ink-foreground">{value}</p>
-      <p className="text-[0.62rem] font-medium uppercase text-muted-foreground md:text-ink-foreground/55">{label}</p>
-    </div>
   );
 }
 
