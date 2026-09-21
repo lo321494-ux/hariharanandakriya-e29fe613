@@ -17,6 +17,7 @@ import { Route as EmpoderamientoRouteImport } from './routes/empoderamiento'
 import { Route as HariharanandaRouteImport } from './routes/hariharananda'
 import { Route as KriyaYogaRouteImport } from './routes/kriya-yoga'
 import { Route as LibrosRouteImport } from './routes/libros'
+import { Route as MiembrosRouteImport } from './routes/miembros'
 import { Route as NoticiasRouteImport } from './routes/noticias'
 import { Route as RaghabanandaRouteImport } from './routes/raghabananda'
 
@@ -60,6 +61,11 @@ const LibrosRoute = LibrosRouteImport.update({
   path: '/libros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MiembrosRoute = MiembrosRouteImport.update({
+  id: '/miembros',
+  path: '/miembros',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NoticiasRoute = NoticiasRouteImport.update({
   id: '/noticias',
   path: '/noticias',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/hariharananda': typeof HariharanandaRoute
   '/kriya-yoga': typeof KriyaYogaRoute
   '/libros': typeof LibrosRoute
+  '/miembros': typeof MiembrosRoute
   '/noticias': typeof NoticiasRoute
   '/raghabananda': typeof RaghabanandaRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/hariharananda': typeof HariharanandaRoute
   '/kriya-yoga': typeof KriyaYogaRoute
   '/libros': typeof LibrosRoute
+  '/miembros': typeof MiembrosRoute
   '/noticias': typeof NoticiasRoute
   '/raghabananda': typeof RaghabanandaRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/hariharananda': typeof HariharanandaRoute
   '/kriya-yoga': typeof KriyaYogaRoute
   '/libros': typeof LibrosRoute
+  '/miembros': typeof MiembrosRoute
   '/noticias': typeof NoticiasRoute
   '/raghabananda': typeof RaghabanandaRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/hariharananda'
     | '/kriya-yoga'
     | '/libros'
+    | '/miembros'
     | '/noticias'
     | '/raghabananda'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/hariharananda'
     | '/kriya-yoga'
     | '/libros'
+    | '/miembros'
     | '/noticias'
     | '/raghabananda'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/hariharananda'
     | '/kriya-yoga'
     | '/libros'
+    | '/miembros'
     | '/noticias'
     | '/raghabananda'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   HariharanandaRoute: typeof HariharanandaRoute
   KriyaYogaRoute: typeof KriyaYogaRoute
   LibrosRoute: typeof LibrosRoute
+  MiembrosRoute: typeof MiembrosRoute
   NoticiasRoute: typeof NoticiasRoute
   RaghabanandaRoute: typeof RaghabanandaRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/miembros': {
+      id: '/miembros'
+      path: '/miembros'
+      fullPath: '/miembros'
+      preLoaderRoute: typeof MiembrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/noticias': {
       id: '/noticias'
       path: '/noticias'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   HariharanandaRoute: HariharanandaRoute,
   KriyaYogaRoute: KriyaYogaRoute,
   LibrosRoute: LibrosRoute,
+  MiembrosRoute: MiembrosRoute,
   NoticiasRoute: NoticiasRoute,
   RaghabanandaRoute: RaghabanandaRoute,
 }
