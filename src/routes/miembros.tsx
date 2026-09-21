@@ -451,13 +451,31 @@ function DashboardHome({
 }) {
   return (
      <div className="py-6 sm:py-8">
-      <div className="max-w-3xl">
-        <p className="font-display text-2xl text-foreground">Bienvenido a tu espacio de estudio.</p>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Aquí encuentras el programa de clases, los satsangas de la comunidad y toda la biblioteca de
-          enseñanzas del linaje de Kriya Yoga.
-        </p>
+      <div className="member-banner member-rise rounded-lg border border-gold/25 p-6 text-ink-foreground shadow-lg sm:p-9">
+        <div className="relative z-10 max-w-3xl">
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-gold">Campus kriyaban</p>
+          <p className="mt-3 font-display text-2xl leading-tight sm:text-4xl">
+            Bienvenido a tu espacio de estudio.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-ink-foreground/70">
+            Aquí encuentras el programa de clases, los satsangas de la comunidad y toda la biblioteca de
+            enseñanzas del linaje de Kriya Yoga.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button onClick={() => onNavigate("clases")}>
+              <GraduationCap className="h-4 w-4" /> Continuar el programa
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => onNavigate("audios")}
+              className="border-gold/40 bg-transparent text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground"
+            >
+              <Headphones className="h-4 w-4" /> Escuchar enseñanzas
+            </Button>
+          </div>
+        </div>
       </div>
+
        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 xl:grid-cols-4">
         <Stat
           icon={GraduationCap}
