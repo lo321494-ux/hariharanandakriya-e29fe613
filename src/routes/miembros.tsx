@@ -124,7 +124,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (username.trim().toLowerCase() === "hariharanada" && password === "baba") {
+    if (username.trim().toLocaleLowerCase("es") === "hariharananda" && password === "baba") {
       window.sessionStorage.setItem(SESSION_KEY, "active");
       setError("");
       onSuccess();
@@ -172,7 +172,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               autoComplete="username"
-              className="mt-2 h-11 bg-card"
+              className="mt-2 h-11 bg-card text-foreground caret-primary"
               required
             />
             <label className="mt-5 block text-sm font-medium text-foreground" htmlFor="member-password">
@@ -184,7 +184,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               autoComplete="current-password"
-              className="mt-2 h-11 bg-card"
+              className="mt-2 h-11 bg-card text-foreground caret-primary"
               required
             />
             {error ? (
