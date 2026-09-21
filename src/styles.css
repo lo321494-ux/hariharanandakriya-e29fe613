@@ -231,6 +231,106 @@
   perspective: none !important;
 }
 
+.member-login {
+  background:
+    linear-gradient(118deg, color-mix(in oklab, var(--color-ink) 94%, var(--color-primary)), var(--color-ink));
+}
+
+.member-login__lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(90deg, transparent 49.9%, color-mix(in oklab, var(--color-gold) 14%, transparent) 50%, transparent 50.1%),
+    linear-gradient(color-mix(in oklab, var(--color-ink-foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 5rem;
+}
+
+.member-login__frame {
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2.5rem 6rem -2.5rem color-mix(in oklab, var(--color-ink) 92%, transparent);
+  animation: member-login-enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.member-login__welcome {
+  background:
+    linear-gradient(145deg, transparent 48%, color-mix(in oklab, var(--color-gold) 10%, transparent) 48.2%, transparent 72%),
+    linear-gradient(125deg, var(--color-ink), color-mix(in oklab, var(--color-ink) 72%, var(--color-primary)));
+}
+
+.member-login__welcome::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+
+.member-login__edition,
+.member-login__eyebrow {
+  letter-spacing: 0.18em;
+}
+
+.member-login__seal {
+  position: absolute;
+  right: -3.5rem;
+  bottom: -4.5rem;
+  display: grid;
+  width: 17rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--color-gold) 22%, transparent);
+  border-radius: 50%;
+  color: color-mix(in oklab, var(--color-gold) 18%, transparent);
+  font-family: var(--font-display);
+  font-size: 6rem;
+  transform: rotate(-8deg);
+}
+
+.member-login__seal::before,
+.member-login__seal::after {
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--color-gold) 16%, transparent);
+  border-radius: 50%;
+  content: "";
+}
+
+.member-login__seal::after {
+  inset: 2.2rem;
+}
+
+.member-login__access {
+  background:
+    linear-gradient(160deg, color-mix(in oklab, var(--color-gold) 6%, var(--color-background)), var(--color-background) 48%);
+}
+
+.member-login__form {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.member-login__form input {
+  border-color: color-mix(in oklab, var(--color-primary) 24%, var(--color-input));
+  transition: border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.member-login__form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 12%, transparent);
+}
+
+.member-login__submit {
+  box-shadow: 0 0.8rem 1.8rem -1rem color-mix(in oklab, var(--color-primary) 65%, transparent) !important;
+}
+
+@keyframes member-login-enter {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .member-study-surface {
   background:
     linear-gradient(90deg, transparent 0 97%, color-mix(in oklab, var(--color-gold) 8%, transparent) 97%),
@@ -467,9 +567,24 @@
   .member-card:hover {
     transform: none;
   }
+
+  .member-login__frame {
+    animation: none;
+  }
 }
 
 @media (max-width: 639px) {
+  .member-login__frame {
+    border-radius: var(--radius-md);
+  }
+
+  .member-login__seal {
+    right: -2rem;
+    bottom: -5.5rem;
+    width: 13rem;
+    font-size: 4rem;
+  }
+
   .member-study-surface {
     background-size: 2rem 100%;
   }
