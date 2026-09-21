@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import {
   MEMBER_DRIVE_URL,
+  driveAudioUrl,
   driveDownloadUrl,
   drivePreviewUrl,
   driveViewUrl,
@@ -407,6 +408,7 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
                 active={activeAudio}
                 completed={completed}
                 onPlay={setActiveAudio}
+                onClose={() => setActiveAudio(null)}
                 onToggle={toggleComplete}
               />
             ) : null}
@@ -712,26 +714,49 @@ function AudioLibrary({
   active,
   completed,
   onPlay,
+  onClose,
   onToggle,
 }: {
   items: MemberResource[];
   active: MemberResource | null;
   completed: string[];
   onPlay: (item: MemberResource) => void;
+  onClose: () => void;
   onToggle: (id: string) => void;
 }) {
   return (
      <div className="py-6 sm:py-8">
       {active ? (
-        <div className="mb-8 border-b border-gold/30 pb-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary">Reproduciendo ahora</p>
-          <h2 className="mt-2 font-display text-2xl text-foreground">{active.title}</h2>
-          <iframe
-            title={`Audio: ${active.title}`}
-            src={drivePreviewUrl(active.id)}
-            className="mt-5 h-20 w-full rounded-md border border-border bg-background"
-            allow="autoplay"
-          />
+        <div className="member-audio-player mb-8 overflow-hidden rounded-lg border border-gold/30 bg-card shadow-lg">
+          <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b border-border px-4 py-4 sm:gap-4 sm:px-6">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <Headphones className="h-5 w-5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-primary">Reproduciendo ahora</p>
+              <h2 className="mt-1 truncate font-display text-lg text-foreground sm:text-2xl">{active.title}</h2>
+            </div>
+            <Button size="icon" variant="ghost" onClick={onClose} aria-label="Cerrar reproductor" title="Cerrar reproductor">
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="grid gap-3 p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-6 sm:py-5">
+            <audio
+              key={active.id}
+              controls
+              autoPlay
+              preload="metadata"
+              src={driveAudioUrl(active.id)}
+              className="member-audio-control w-full"
+            >
+              Tu navegador no puede reproducir este audio.
+            </audio>
+            <Button asChild variant="outline" className="w-full sm:w-auto">
+              <a href={driveDownloadUrl(active.id)} download>
+                <Download className="h-4 w-4" /> Descargar
+              </a>
+            </Button>
+          </div>
         </div>
       ) : null}
        <SectionIntroduction eyebrow="Escucha consciente" title="Enseñanzas para acompañar tu práctica" description={`${items.length} grabaciones encontradas. Reproduce cada enseñanza y marca tu avance.`} compact />
@@ -816,8 +841,7 @@ function DocumentLibrary({
               <Button asChild size="icon" variant="outline">
                 <a
                   href={driveDownloadUrl(item.id)}
-                  target="_blank"
-                  rel="noreferrer"
+                  download
                   aria-label={`Descargar ${item.title}`}
                   title="Descargar"
                 >
@@ -862,7 +886,7 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
           </div>
           <div className="flex shrink-0 items-center gap-2">
              <Button asChild size="icon" variant="outline">
-              <a href={driveDownloadUrl(document.id)} target="_blank" rel="noreferrer" aria-label="Descargar" title="Descargar">
+               <a href={driveDownloadUrl(document.id)} download aria-label="Descargar" title="Descargar">
                 <Download className="h-4 w-4" />
               </a>
             </Button>

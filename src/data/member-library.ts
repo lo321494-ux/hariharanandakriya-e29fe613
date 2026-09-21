@@ -88,3 +88,5 @@ export const memberDocuments: MemberResource[] = [
 export const driveViewUrl = (id: string) => `https://drive.google.com/file/d/${id}/view`;
 export const drivePreviewUrl = (id: string) => `https://drive.google.com/file/d/${id}/preview`;
 export const driveDownloadUrl = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
+export const driveAudioUrl = (id: string) =>
+  `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`;

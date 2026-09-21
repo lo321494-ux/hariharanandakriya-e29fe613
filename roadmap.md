@@ -8,3 +8,4 @@
 - [x] Corregir las credenciales y hacer visible el texto del acceso
 - [x] Reformular visualmente los módulos y la tipografía del área de miembros
 - [x] Renovar la pantalla de ingreso del área de miembros en todos los dispositivos
+- [x] Corregir y reorganizar la reproducción y descarga de audios y documentos
