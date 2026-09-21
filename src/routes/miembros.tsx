@@ -462,12 +462,40 @@ function DashboardHome({
   );
 }
 
-function Stat({ icon: Icon, value, label }: { icon: typeof Home; value: number; label: string }) {
+function Stat({
+  icon: Icon,
+  value,
+  label,
+  onClick,
+}: {
+  icon: typeof Home;
+  value: number;
+  label: string;
+  onClick?: () => void;
+}) {
+  const content = (
+    <>
+      <Icon className="h-5 w-5 text-primary" />
+      <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
+      <p className="text-sm text-muted-foreground">{label}</p>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className="rounded-md border border-border bg-background p-4 text-left shadow-sm transition-colors hover:border-primary/50 sm:p-5"
+      >
+        {content}
+      </button>
+    );
+  }
+
   return (
      <div className="rounded-md border border-border bg-background p-4 shadow-sm sm:p-5">
-      <Icon className="h-5 w-5 text-primary" />
-       <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
-      <p className="text-sm text-muted-foreground">{label}</p>
+      {content}
     </div>
   );
 }
