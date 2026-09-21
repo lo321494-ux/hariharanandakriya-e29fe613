@@ -6,4 +6,4 @@
 - [x] Verificar acceso y contenido en celular, tableta y computador
 - [x] Optimizar el área de miembros para celular y tableta
 - [x] Corregir las credenciales y hacer visible el texto del acceso
-- [ ] Reformular visualmente los módulos y la tipografía del área de miembros
+- [x] Reformular visualmente los módulos y la tipografía del área de miembros
