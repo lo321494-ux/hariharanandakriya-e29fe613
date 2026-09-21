@@ -249,8 +249,8 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
 
   return (
     <div className="relative z-10 min-h-[calc(100svh-4.5rem)] bg-background md:min-h-[calc(100svh-6rem)]">
-      <div className="mx-auto grid max-w-[95rem] lg:grid-cols-[17rem_1fr]">
-        <aside className="relative border-b border-border bg-ink text-ink-foreground lg:min-h-[calc(100svh-6rem)] lg:border-b-0 lg:border-r lg:border-border/20">
+       <div className="mx-auto grid w-full min-w-0 max-w-[95rem] lg:grid-cols-[17rem_minmax(0,1fr)]">
+         <aside className="relative min-w-0 max-w-full overflow-hidden border-b border-border bg-ink text-ink-foreground lg:min-h-[calc(100svh-6rem)] lg:border-b-0 lg:border-r lg:border-border/20">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-ink-foreground/10 px-4 py-3 lg:hidden">
             <div className="min-w-0">
               <p className="text-[0.65rem] uppercase tracking-[0.2em] text-gold">Campus Kriya</p>
@@ -275,7 +275,7 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
             </p>
           </div>
 
-          <nav className="flex snap-x gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:block lg:overflow-visible lg:px-4 lg:pb-6 lg:pt-0">
+           <nav className="flex w-full min-w-0 max-w-full snap-x gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:block lg:overflow-visible lg:px-4 lg:pb-6 lg:pt-0">
             {navGroups.map((group) => (
               <div key={group.title} className="contents lg:mb-4 lg:block lg:last:mb-0">
                 <p className="hidden px-3 pb-2 text-[0.68rem] uppercase tracking-[0.2em] text-ink-foreground/40 lg:block">
