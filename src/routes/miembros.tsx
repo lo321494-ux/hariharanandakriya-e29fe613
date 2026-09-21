@@ -251,6 +251,22 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
     <div className="relative z-10 min-h-[calc(100svh-4.5rem)] bg-background md:min-h-[calc(100svh-6rem)]">
       <div className="mx-auto grid max-w-[95rem] lg:grid-cols-[17rem_1fr]">
         <aside className="relative border-b border-border bg-ink text-ink-foreground lg:min-h-[calc(100svh-6rem)] lg:border-b-0 lg:border-r lg:border-border/20">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-ink-foreground/10 px-4 py-3 lg:hidden">
+            <div className="min-w-0">
+              <p className="text-[0.65rem] uppercase tracking-[0.2em] text-gold">Campus Kriya</p>
+              <p className="truncate font-display text-base text-ink-foreground">Escuela kriyaban</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onLogout}
+              className="shrink-0 text-ink-foreground/70 hover:bg-ink-foreground/10 hover:text-ink-foreground"
+              aria-label="Cerrar sesión"
+              title="Cerrar sesión"
+            >
+              <LogOut className="h-4 w-4" />
+            </Button>
+          </div>
           <div className="hidden px-6 py-8 lg:block">
             <p className="text-xs uppercase tracking-[0.22em] text-gold">Campus Kriya</p>
             <p className="mt-1 font-display text-xl">Escuela kriyaban</p>
@@ -259,44 +275,33 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
             </p>
           </div>
 
-          <nav className="px-3 py-4 lg:px-4 lg:pb-6 lg:pt-0">
+          <nav className="flex snap-x gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:block lg:overflow-visible lg:px-4 lg:pb-6 lg:pt-0">
             {navGroups.map((group) => (
-              <div key={group.title} className="mb-4 last:mb-0">
+              <div key={group.title} className="contents lg:mb-4 lg:block lg:last:mb-0">
                 <p className="hidden px-3 pb-2 text-[0.68rem] uppercase tracking-[0.2em] text-ink-foreground/40 lg:block">
                   {group.title}
                 </p>
-                <div className="grid grid-cols-2 gap-1 sm:grid-cols-4 lg:block lg:space-y-1">
+                <div className="contents lg:block lg:space-y-1">
                   {group.items.map(({ id, label, icon: Icon }) => (
                     <Button
                       key={id}
                       type="button"
                       variant="ghost"
                       onClick={() => goTo(id)}
-                      className={`min-w-0 justify-start ${
+                      className={`h-10 shrink-0 snap-start justify-start px-3 lg:h-9 lg:w-full ${
                         view === id
                           ? "bg-ink-foreground/12 text-gold"
                           : "text-ink-foreground/65 hover:bg-ink-foreground/10 hover:text-ink-foreground"
                       }`}
                     >
                       <Icon className="h-4 w-4 shrink-0" />
-                      <span className="truncate">{label}</span>
+                      <span>{label}</span>
                     </Button>
                   ))}
                 </div>
               </div>
             ))}
           </nav>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onLogout}
-            className="absolute right-4 top-4 text-ink-foreground/70 hover:bg-ink-foreground/10 hover:text-ink-foreground lg:hidden"
-            aria-label="Cerrar sesión"
-            title="Cerrar sesión"
-          >
-            <LogOut className="h-4 w-4" />
-          </Button>
 
           <div className="hidden px-6 py-7 lg:block">
             <div className="flex items-center justify-between text-xs text-ink-foreground/60">
@@ -314,16 +319,16 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
           </div>
         </aside>
 
-        <section className="min-w-0 px-5 py-8 sm:px-8 lg:px-12 lg:py-10">
-          <header className="flex flex-col gap-5 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
-            <div>
+        <section className="min-w-0 px-4 py-6 sm:px-7 sm:py-8 lg:px-12 lg:py-10">
+          <header className="grid grid-cols-1 gap-4 border-b border-border pb-6 sm:grid-cols-[minmax(0,1fr)_minmax(15rem,20rem)] sm:items-end sm:gap-6 lg:pb-8">
+            <div className="min-w-0">
               <p className="text-xs uppercase tracking-[0.24em] text-primary">Fundación Hariharananda</p>
-              <h1 className="mt-2 font-display text-3xl text-foreground sm:text-4xl">
+              <h1 className="mt-1 truncate font-display text-3xl text-foreground sm:mt-2 sm:text-4xl">
                 {allNavItems.find((item) => item.id === view)?.label}
               </h1>
             </div>
             {view === "audios" || view === "biblioteca" ? (
-              <label className="relative block w-full sm:max-w-xs">
+               <label className="relative block w-full">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <span className="sr-only">Buscar material</span>
                 <Input
@@ -380,7 +385,7 @@ function DashboardHome({
   onNavigate: (view: View) => void;
 }) {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       <div className="max-w-3xl">
         <p className="font-display text-2xl text-foreground">Bienvenido a tu espacio de estudio.</p>
         <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -388,14 +393,14 @@ function DashboardHome({
           enseñanzas del linaje de Kriya Yoga.
         </p>
       </div>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+       <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 xl:grid-cols-4">
         <Stat icon={GraduationCap} value={courseModules.length} label="Módulos de clase" />
         <Stat icon={Headphones} value={memberAudios.length} label="Audios" />
         <Stat icon={BookOpen} value={memberDocuments.length} label="Documentos" />
         <Stat icon={Check} value={completed} label="Completados" />
       </div>
-      <section className="mt-10 border-y border-border py-8">
-        <div className="flex items-end justify-between gap-5">
+       <section className="mt-8 border-y border-border py-6 sm:mt-10 sm:py-8">
+         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div>
             <p className="text-sm font-medium text-foreground">Tu recorrido</p>
             <p className="mt-1 text-sm text-muted-foreground">El progreso se guarda en este dispositivo.</p>
@@ -405,7 +410,7 @@ function DashboardHome({
         <Progress value={progress} className="mt-5 h-2.5" />
       </section>
 
-      <section className="mt-10">
+       <section className="mt-8 sm:mt-10">
         <h2 className="font-display text-xl text-foreground">Agenda de la comunidad</h2>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {upcomingSessions.slice(0, 2).map((item) => (
@@ -417,7 +422,7 @@ function DashboardHome({
         </Button>
       </section>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
+       <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-10 xl:grid-cols-3">
         <ModuleButton
           icon={GraduationCap}
           title="Entrar a clases"
@@ -443,9 +448,9 @@ function DashboardHome({
 
 function Stat({ icon: Icon, value, label }: { icon: typeof Home; value: number; label: string }) {
   return (
-    <div className="rounded-md border border-border bg-background p-5 shadow-sm">
+     <div className="rounded-md border border-border bg-background p-4 shadow-sm sm:p-5">
       <Icon className="h-5 w-5 text-primary" />
-      <p className="mt-5 font-display text-3xl text-foreground">{value}</p>
+       <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
       <p className="text-sm text-muted-foreground">{label}</p>
     </div>
   );
@@ -466,7 +471,7 @@ function ModuleButton({
     <Button
       variant="outline"
       onClick={onClick}
-      className="h-auto justify-start gap-4 border-gold/30 bg-background p-5 text-left shadow-sm"
+       className="h-auto min-w-0 justify-start gap-3 whitespace-normal border-gold/30 bg-background p-4 text-left shadow-sm sm:gap-4 sm:p-5"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
         <Icon className="h-5 w-5" />
@@ -481,14 +486,14 @@ function ModuleButton({
 
 function ClassesView() {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       <p className="max-w-3xl leading-relaxed text-muted-foreground">
         Plan de formación en tres niveles. Cada módulo reúne las lecciones del tema y una práctica
         concreta para la semana; el material de apoyo está en la biblioteca y en los audios.
       </p>
-      <div className="mt-8 grid gap-5 xl:grid-cols-2">
+       <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 xl:grid-cols-2">
         {courseModules.map((module, index) => (
-          <article key={module.id} className="rounded-md border border-border bg-background p-6 shadow-sm">
+           <article key={module.id} className="rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
             <div className="flex items-center justify-between gap-4">
               <p className="text-xs uppercase tracking-[0.18em] text-primary">{module.level}</p>
               <span className="font-display text-2xl text-muted-foreground/50">
@@ -518,14 +523,14 @@ function ClassesView() {
 
 function SatsangasView({ onNavigate }: { onNavigate: (view: View) => void }) {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       <p className="max-w-3xl leading-relaxed text-muted-foreground">
         El satsanga es el encuentro de la comunidad alrededor de la enseñanza. Estos son los cuatro
         encuentros regulares de la Fundación.
       </p>
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+       <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5">
         {satsangas.map((item) => (
-          <article key={item.id} className="rounded-md border border-border bg-background p-6 shadow-sm">
+           <article key={item.id} className="rounded-md border border-border bg-background p-5 shadow-sm sm:p-6">
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Users className="h-5 w-5" />
             </span>
@@ -553,7 +558,7 @@ function SatsangasView({ onNavigate }: { onNavigate: (view: View) => void }) {
 
 function UpcomingView() {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       <p className="max-w-3xl leading-relaxed text-muted-foreground">
         Calendario regular de encuentros. La coordinación confirma cada fecha por los canales de la
         Fundación antes de la reunión.
@@ -569,7 +574,7 @@ function UpcomingView() {
 
 function SessionCard({ session }: { session: (typeof upcomingSessions)[number] }) {
   return (
-    <article className="grid gap-4 rounded-md border border-border bg-background p-5 shadow-sm sm:grid-cols-[3rem_1fr_auto] sm:items-center">
+     <article className="grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-4 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-5">
       <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
         <CalendarDays className="h-5 w-5" />
       </span>
@@ -577,7 +582,7 @@ function SessionCard({ session }: { session: (typeof upcomingSessions)[number] }
         <h2 className="font-display text-lg text-foreground">{session.title}</h2>
         <p className="mt-1 text-sm text-muted-foreground">{session.detail}</p>
       </div>
-      <div className="text-sm sm:text-right">
+       <div className="col-span-2 border-t border-border pt-3 text-sm sm:col-span-1 sm:border-0 sm:pt-0 sm:text-right">
         <p className="text-foreground">{session.weekday}</p>
         <p className="text-muted-foreground">
           {session.time} · {session.modality}
@@ -601,7 +606,7 @@ function AudioLibrary({
   onToggle: (id: string) => void;
 }) {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       {active ? (
         <div className="mb-8 border-b border-gold/30 pb-8">
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Reproduciendo ahora</p>
@@ -619,7 +624,7 @@ function AudioLibrary({
         {items.map((item, index) => (
           <article
             key={item.id}
-            className="grid items-center gap-4 rounded-md border border-border bg-background p-4 shadow-sm sm:grid-cols-[3rem_1fr_auto]"
+             className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 rounded-md border border-border bg-background p-3 shadow-sm sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-4 sm:p-4"
           >
             <Button
               size="icon"
@@ -634,13 +639,13 @@ function AudioLibrary({
               <p className="text-xs text-muted-foreground">
                 Pista {String(index + 1).padStart(2, "0")} · {item.collection}
               </p>
-              <h2 className="mt-1 truncate font-medium text-foreground">{item.title}</h2>
+               <h2 className="mt-1 line-clamp-2 font-medium leading-snug text-foreground sm:truncate">{item.title}</h2>
             </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onToggle(item.id)}
-              className={completed.includes(item.id) ? "text-primary" : "text-muted-foreground"}
+               className={`col-span-2 justify-self-end sm:col-span-1 ${completed.includes(item.id) ? "text-primary" : "text-muted-foreground"}`}
             >
               <Check className="h-4 w-4" /> {completed.includes(item.id) ? "Completado" : "Marcar"}
             </Button>
@@ -664,15 +669,15 @@ function DocumentLibrary({
   onRead: (item: MemberResource) => void;
 }) {
   return (
-    <div className="py-8">
+     <div className="py-6 sm:py-8">
       <p className="mb-5 text-sm text-muted-foreground">
         {items.length} lecturas encontradas · se abren dentro de la página
       </p>
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+       <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
         {items.map((item) => (
           <article
             key={item.id}
-            className="flex min-h-56 flex-col rounded-md border border-border bg-background p-5 shadow-sm"
+             className="flex min-h-0 flex-col rounded-md border border-border bg-background p-4 shadow-sm sm:min-h-56 sm:p-5"
           >
             <div className="flex items-start justify-between gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -689,9 +694,9 @@ function DocumentLibrary({
                 <Check className="h-4 w-4" />
               </Button>
             </div>
-            <p className="mt-5 text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.collection}</p>
+             <p className="mt-4 text-xs uppercase tracking-[0.14em] text-muted-foreground sm:mt-5">{item.collection}</p>
             <h2 className="mt-2 line-clamp-3 font-display text-lg leading-snug text-foreground">{item.title}</h2>
-            <div className="mt-auto flex gap-2 pt-6">
+             <div className="mt-auto flex gap-2 pt-5 sm:pt-6">
               <Button size="sm" className="flex-1" onClick={() => onRead(item)}>
                 <BookOpen className="h-4 w-4" /> Leer aquí
               </Button>
@@ -726,24 +731,24 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 p-3 sm:p-6"
+       className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 sm:p-4 lg:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={`Lectura: ${document.title}`}
     >
-      <div className="flex h-full w-full max-w-6xl flex-col overflow-hidden rounded-lg border border-gold/25 bg-background shadow-2xl">
-        <div className="flex items-start justify-between gap-4 border-b border-border p-4 sm:p-5">
+       <div className="flex h-[100dvh] w-full max-w-6xl flex-col overflow-hidden bg-background shadow-2xl sm:h-[calc(100dvh-2rem)] sm:rounded-lg sm:border sm:border-gold/25 lg:h-full">
+         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-border p-3 sm:p-5">
           <div className="min-w-0">
             <p className="text-xs uppercase tracking-[0.18em] text-primary">{document.collection}</p>
-            <h2 className="mt-1 truncate font-display text-lg text-foreground sm:text-xl">{document.title}</h2>
+             <h2 className="mt-1 line-clamp-2 font-display text-base leading-snug text-foreground sm:text-xl">{document.title}</h2>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Button asChild size="icon" variant="outline" className="hidden sm:inline-flex">
+             <Button asChild size="icon" variant="outline">
               <a href={driveDownloadUrl(document.id)} target="_blank" rel="noreferrer" aria-label="Descargar" title="Descargar">
                 <Download className="h-4 w-4" />
               </a>
             </Button>
-            <Button asChild size="icon" variant="outline" className="hidden sm:inline-flex">
+             <Button asChild size="icon" variant="outline" className="hidden min-[430px]:inline-flex">
               <a href={driveViewUrl(document.id)} target="_blank" rel="noreferrer" aria-label="Abrir en pestaña nueva" title="Abrir en pestaña nueva">
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -756,7 +761,7 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
         <iframe
           title={`Documento: ${document.title}`}
           src={drivePreviewUrl(document.id)}
-          className="h-full w-full flex-1 bg-muted"
+           className="min-h-0 w-full flex-1 bg-muted"
           allow="autoplay"
         />
       </div>
@@ -766,7 +771,7 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
 
 function VideoLibrary() {
   return (
-    <div className="flex min-h-[28rem] items-center justify-center py-12 text-center">
+     <div className="flex min-h-[22rem] items-center justify-center py-10 text-center sm:min-h-[28rem] sm:py-12">
       <div className="max-w-md">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
           <Video className="h-7 w-7" />
