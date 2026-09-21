@@ -8,6 +8,8 @@ import {
   CircleUserRound,
   Download,
   ExternalLink,
+  Eye,
+  EyeOff,
   GraduationCap,
   Headphones,
   Home,
@@ -16,6 +18,7 @@ import {
   LogOut,
   Play,
   Search,
+  ShieldCheck,
   Users,
   Video,
   X,
@@ -121,6 +124,7 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -134,15 +138,28 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-5 py-16 text-ink-foreground md:min-h-[calc(100svh-6rem)]">
+    <section className="member-app-shell relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-12 text-ink-foreground sm:px-5 sm:py-16 md:min-h-[calc(100svh-6rem)]">
       <div
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,var(--color-primary)/0.22,transparent_34rem)]"
         aria-hidden="true"
       />
-      <div className="relative grid w-full max-w-5xl overflow-hidden rounded-lg border border-gold/25 bg-background shadow-2xl lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="hidden min-h-[35rem] flex-col justify-between bg-ink p-12 lg:flex">
-          <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="w-52" />
-          <div>
+      <div
+        className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-gold/10 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="relative grid w-full max-w-5xl overflow-hidden rounded-xl border border-gold/30 bg-background shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75)] lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="relative hidden min-h-[35rem] flex-col justify-between overflow-hidden bg-ink p-12 lg:flex">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,var(--color-gold)/0.16,transparent_28rem)]"
+            aria-hidden="true"
+          />
+          <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="relative mb-10 w-44" />
+          <div className="relative">
             <p className="text-xs uppercase tracking-[0.28em] text-gold">Espacio de estudio</p>
             <h1 className="mt-5 max-w-md font-display text-5xl leading-tight text-ink-foreground">
               Profundiza en la práctica de Kriya Yoga
@@ -150,13 +167,21 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
             <p className="mt-5 max-w-md leading-relaxed text-ink-foreground/65">
               Un lugar reservado para escuchar, leer y continuar el camino interior.
             </p>
+            <div className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-ink-foreground/15 pt-7">
+              <LoginHighlight icon={Headphones} value={`${memberAudios.length}`} label="Audios" />
+              <LoginHighlight icon={Library} value={`${memberDocuments.length}`} label="Documentos" />
+              <LoginHighlight icon={GraduationCap} value={`${courseModules.length}`} label="Módulos" />
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center p-7 sm:p-12">
+        <div className="relative flex items-center bg-card/40 p-6 sm:p-12">
           <form className="mx-auto w-full max-w-sm" onSubmit={submit}>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <LockKeyhole className="h-5 w-5" />
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-primary/10 text-primary">
+                <LockKeyhole className="h-5 w-5" />
+              </div>
+              <img src={logo.url} alt="" className="h-10 w-auto lg:hidden" aria-hidden="true" />
             </div>
             <p className="mt-7 text-xs uppercase tracking-[0.24em] text-primary">Área de miembros</p>
             <h1 className="mt-2 font-display text-4xl text-foreground">Bienvenido</h1>
@@ -167,41 +192,76 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
             <label className="mt-8 block text-sm font-medium text-foreground" htmlFor="member-user">
               Usuario
             </label>
-            <Input
-              id="member-user"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-              autoComplete="username"
-              className="mt-2 h-11 bg-card text-foreground caret-primary"
-              required
-            />
+            <div className="relative mt-2">
+              <CircleUserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="member-user"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                autoComplete="username"
+                placeholder="Tu usuario"
+                className="h-12 bg-background pl-10 text-foreground caret-primary"
+                required
+              />
+            </div>
             <label className="mt-5 block text-sm font-medium text-foreground" htmlFor="member-password">
               Contraseña
             </label>
-            <Input
-              id="member-password"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              autoComplete="current-password"
-              className="mt-2 h-11 bg-card text-foreground caret-primary"
-              required
-            />
+            <div className="relative mt-2">
+              <LockKeyhole className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="member-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                autoComplete="current-password"
+                placeholder="Tu contraseña"
+                className="h-12 bg-background pl-10 pr-11 text-foreground caret-primary"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((value) => !value)}
+                className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+                aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {error ? (
-              <p className="mt-4 text-sm text-destructive" role="alert">
+              <p className="mt-4 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive" role="alert">
                 {error}
               </p>
             ) : null}
-            <Button type="submit" className="mt-7 h-11 w-full">
+            <Button type="submit" className="mt-7 h-12 w-full text-base">
               Ingresar <CircleUserRound className="h-4 w-4" />
             </Button>
-            <p className="mt-5 text-center text-xs text-muted-foreground">
+            <p className="mt-6 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+              <ShieldCheck className="h-3.5 w-3.5 text-gold" />
               Acceso exclusivo para miembros autorizados.
             </p>
           </form>
         </div>
       </div>
     </section>
+  );
+}
+
+function LoginHighlight({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: typeof Home;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div>
+      <Icon className="h-4 w-4 text-gold" />
+      <p className="mt-2 font-display text-2xl text-ink-foreground">{value}</p>
+      <p className="text-xs uppercase tracking-[0.16em] text-ink-foreground/55">{label}</p>
+    </div>
   );
 }
 
