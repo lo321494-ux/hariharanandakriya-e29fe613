@@ -139,55 +139,40 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <section className="member-app-shell relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-12 text-ink-foreground sm:px-5 sm:py-16 md:min-h-[calc(100svh-6rem)]">
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,var(--color-primary)/0.22,transparent_34rem)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-gold/10 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-primary/10 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative grid w-full max-w-5xl overflow-hidden rounded-xl border border-gold/30 bg-background shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75)] lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="relative hidden min-h-[35rem] flex-col justify-between overflow-hidden bg-ink p-12 lg:flex">
-          <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,var(--color-gold)/0.16,transparent_28rem)]"
-            aria-hidden="true"
-          />
-          <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="relative mb-10 w-44" />
-          <div className="relative">
-            <p className="text-xs uppercase tracking-[0.28em] text-gold">Espacio de estudio</p>
-            <h1 className="mt-5 max-w-md font-display text-5xl leading-tight text-ink-foreground">
-              Profundiza en la práctica de Kriya Yoga
-            </h1>
-            <p className="mt-5 max-w-md leading-relaxed text-ink-foreground/65">
-              Un lugar reservado para escuchar, leer y continuar el camino interior.
-            </p>
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-ink-foreground/15 pt-7">
-              <LoginHighlight icon={Headphones} value={`${memberAudios.length}`} label="Audios" />
-              <LoginHighlight icon={Library} value={`${memberDocuments.length}`} label="Documentos" />
-              <LoginHighlight icon={GraduationCap} value={`${courseModules.length}`} label="Módulos" />
-            </div>
+    <section className="member-login member-app-shell relative isolate flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden bg-ink px-4 py-7 text-ink-foreground sm:px-7 sm:py-10 md:min-h-[calc(100svh-6rem)] lg:px-10">
+      <div className="member-login__lines" aria-hidden="true" />
+      <div className="member-login__frame relative grid w-full max-w-6xl overflow-hidden border border-gold/30 bg-background md:grid-cols-[minmax(0,0.92fr)_minmax(24rem,0.72fr)]">
+        <div className="member-login__welcome relative flex min-h-[15rem] flex-col overflow-hidden bg-ink p-6 sm:min-h-[19rem] sm:p-9 md:min-h-[36rem] md:p-10 lg:p-14">
+          <div className="member-login__brand relative z-10 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+            <img src={logo.url} alt="Fundación Hariharananda Kriya Yoga" className="w-36 sm:w-44" />
+            <span className="member-login__edition hidden text-xs uppercase text-gold/75 sm:block">Campus · 01</span>
           </div>
+          <div className="relative z-10 mt-auto max-w-xl pt-10">
+            <p className="member-login__eyebrow text-xs font-semibold uppercase text-gold">Espacio de estudio</p>
+            <h1 className="mt-3 max-w-lg font-display text-3xl leading-tight text-ink-foreground sm:text-4xl lg:mt-5 lg:text-5xl">
+              Un lugar para profundizar en la práctica.
+            </h1>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-foreground/65 sm:text-base lg:mt-5">
+              Enseñanzas, estudio y comunidad para acompañar tu camino de Kriya Yoga.
+            </p>
+          </div>
+          <div className="member-login__seal" aria-hidden="true"><span>ॐ</span></div>
         </div>
 
-        <div className="relative flex items-center bg-card/40 p-6 sm:p-12">
-          <form className="mx-auto w-full max-w-sm" onSubmit={submit}>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-primary/10 text-primary">
+        <div className="member-login__access relative flex items-center p-5 sm:p-9 md:p-10 lg:p-14">
+          <form className="member-login__form mx-auto w-full max-w-sm" onSubmit={submit}>
+            <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-primary/10 text-primary">
                 <LockKeyhole className="h-5 w-5" />
               </div>
-              <img src={logo.url} alt="" className="h-10 w-auto lg:hidden" aria-hidden="true" />
+              <div className="min-w-0">
+                <p className="member-login__eyebrow text-xs font-semibold uppercase text-primary">Área de miembros</p>
+                <p className="mt-1 text-xs text-muted-foreground">Acceso privado para kriyabanes</p>
+              </div>
             </div>
-            <p className="mt-7 text-xs uppercase tracking-[0.24em] text-primary">Área de miembros</p>
-            <h1 className="mt-2 font-display text-4xl text-foreground">Bienvenido</h1>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Ingresa tus datos para acceder al material de estudiantes kriyabanes.
+            <h2 className="mt-7 font-display text-4xl leading-none text-foreground sm:text-5xl">Bienvenido</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Continúa tu recorrido de estudio ingresando tus datos de acceso.
             </p>
 
             <label className="mt-8 block text-sm font-medium text-foreground" htmlFor="member-user">
@@ -234,12 +219,17 @@ function MemberLogin({ onSuccess }: { onSuccess: () => void }) {
                 {error}
               </p>
             ) : null}
-            <Button type="submit" className="mt-7 h-12 w-full text-base">
-              Ingresar <CircleUserRound className="h-4 w-4" />
+            <Button type="submit" className="member-login__submit mt-7 h-12 w-full text-base">
+              Entrar al campus <ChevronRight className="h-4 w-4" />
             </Button>
-            <p className="mt-6 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+            <div className="mt-6 grid grid-cols-3 border-y border-border py-4 md:hidden">
+              <LoginHighlight icon={Headphones} value={`${memberAudios.length}`} label="Audios" />
+              <LoginHighlight icon={Library} value={`${memberDocuments.length}`} label="Lecturas" />
+              <LoginHighlight icon={GraduationCap} value={`${courseModules.length}`} label="Módulos" />
+            </div>
+            <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
               <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-              Acceso exclusivo para miembros autorizados.
+              Acceso reservado para miembros autorizados
             </p>
           </form>
         </div>
@@ -258,10 +248,10 @@ function LoginHighlight({
   label: string;
 }) {
   return (
-    <div>
-      <Icon className="h-4 w-4 text-gold" />
-      <p className="mt-2 font-display text-2xl text-ink-foreground">{value}</p>
-      <p className="text-xs uppercase tracking-[0.16em] text-ink-foreground/55">{label}</p>
+    <div className="text-center md:text-left">
+      <Icon className="mx-auto h-4 w-4 text-primary md:mx-0 md:text-gold" />
+      <p className="mt-1 font-display text-xl text-foreground md:mt-2 md:text-2xl md:text-ink-foreground">{value}</p>
+      <p className="text-[0.62rem] font-medium uppercase text-muted-foreground md:text-ink-foreground/55">{label}</p>
     </div>
   );
 }
