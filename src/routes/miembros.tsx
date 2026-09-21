@@ -395,9 +395,24 @@ function DashboardHome({
         </p>
       </div>
        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 xl:grid-cols-4">
-        <Stat icon={GraduationCap} value={courseModules.length} label="Módulos de clase" />
-        <Stat icon={Headphones} value={memberAudios.length} label="Audios" />
-        <Stat icon={BookOpen} value={memberDocuments.length} label="Documentos" />
+        <Stat
+          icon={GraduationCap}
+          value={courseModules.length}
+          label="Módulos de clase"
+          onClick={() => onNavigate("clases")}
+        />
+        <Stat
+          icon={Headphones}
+          value={memberAudios.length}
+          label="Audios"
+          onClick={() => onNavigate("audios")}
+        />
+        <Stat
+          icon={BookOpen}
+          value={memberDocuments.length}
+          label="Documentos"
+          onClick={() => onNavigate("biblioteca")}
+        />
         <Stat icon={Check} value={completed} label="Completados" />
       </div>
        <section className="mt-8 border-y border-border py-6 sm:mt-10 sm:py-8">
@@ -447,12 +462,40 @@ function DashboardHome({
   );
 }
 
-function Stat({ icon: Icon, value, label }: { icon: typeof Home; value: number; label: string }) {
+function Stat({
+  icon: Icon,
+  value,
+  label,
+  onClick,
+}: {
+  icon: typeof Home;
+  value: number;
+  label: string;
+  onClick?: () => void;
+}) {
+  const content = (
+    <>
+      <Icon className="h-5 w-5 text-primary" />
+      <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
+      <p className="text-sm text-muted-foreground">{label}</p>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className="rounded-md border border-border bg-background p-4 text-left shadow-sm transition-colors hover:border-primary/50 sm:p-5"
+      >
+        {content}
+      </button>
+    );
+  }
+
   return (
      <div className="rounded-md border border-border bg-background p-4 shadow-sm sm:p-5">
-      <Icon className="h-5 w-5 text-primary" />
-       <p className="mt-3 font-display text-2xl text-foreground sm:mt-5 sm:text-3xl">{value}</p>
-      <p className="text-sm text-muted-foreground">{label}</p>
+      {content}
     </div>
   );
 }
