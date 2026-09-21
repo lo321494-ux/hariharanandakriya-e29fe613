@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Facebook, Menu, MessageCircle, X } from "lucide-react";
+import { ChevronDown, Facebook, Menu, MessageCircle, UserRound, X } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 
@@ -90,6 +90,9 @@ export function SiteHeader() {
           <Button asChild className="rounded-full px-5 shadow-md shadow-primary/20">
             <Link to="/contacto">Contacto</Link>
           </Button>
+          <Button asChild variant="outline" size="icon" className="rounded-full border-gold/40" title="Área de miembros">
+            <Link to="/miembros" aria-label="Área de miembros"><UserRound className="h-4 w-4" /></Link>
+          </Button>
         </nav>
 
         <Button
@@ -123,6 +126,13 @@ export function SiteHeader() {
               className="col-span-2 mt-2 rounded-full bg-primary px-5 py-3 text-center text-sm font-medium text-primary-foreground sm:col-span-1"
             >
               Contacto
+            </Link>
+            <Link
+              to="/miembros"
+              onClick={close}
+              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-gold/40 px-5 py-3 text-center text-sm font-medium text-foreground sm:col-span-1"
+            >
+              <UserRound className="h-4 w-4" /> Miembros
             </Link>
             <div className="col-span-2 mt-3 flex gap-5 px-2 text-sm text-muted-foreground sm:col-span-3">
               <a className="flex items-center gap-2 hover:text-primary" href={FACEBOOK} target="_blank" rel="noreferrer"><Facebook className="h-4 w-4" />Facebook</a>

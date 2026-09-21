@@ -79,6 +79,7 @@ export function SiteFooter() {
             <li><Link to="/kriya-yoga" className="hover:text-primary">Kriya Yoga</Link></li>
             <li><Link to="/noticias" className="hover:text-primary">Noticias</Link></li>
             <li><Link to="/contacto" className="hover:text-primary">Contacto</Link></li>
+            <li><Link to="/miembros" className="hover:text-primary">Área de miembros</Link></li>
           </ul>
         </div>
 
