@@ -231,6 +231,111 @@
   perspective: none !important;
 }
 
+.member-study-surface {
+  background:
+    linear-gradient(90deg, transparent 0 97%, color-mix(in oklab, var(--color-gold) 8%, transparent) 97%),
+    var(--color-background);
+  background-size: 3.5rem 100%;
+}
+
+.member-page-header {
+  position: relative;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-border) 75%, transparent);
+}
+
+.member-page-header::after {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 4.5rem;
+  height: 2px;
+  content: "";
+  background: var(--color-primary);
+}
+
+.member-view-title {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.member-section-intro {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.member-section-intro::before {
+  position: absolute;
+  top: 0.15rem;
+  bottom: 0.15rem;
+  left: 0;
+  width: 2px;
+  content: "";
+  background: linear-gradient(var(--color-gold), color-mix(in oklab, var(--color-primary) 30%, transparent));
+}
+
+.member-progress-panel {
+  background: linear-gradient(110deg, color-mix(in oklab, var(--color-primary) 7%, var(--color-card)), var(--color-card));
+}
+
+.member-stat-card {
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--color-gold) 7%, transparent), transparent 55%),
+    var(--color-card);
+}
+
+.member-stat-icon {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--color-primary) 22%, transparent);
+  border-radius: 9999px;
+  color: var(--color-primary);
+  background: color-mix(in oklab, var(--color-primary) 8%, transparent);
+}
+
+.member-module-link,
+.member-course-card,
+.member-community-card,
+.member-session-card,
+.member-audio-row,
+.member-document-card {
+  background-color: color-mix(in oklab, var(--color-card) 94%, var(--color-sand));
+}
+
+.member-module-link {
+  min-height: 6.5rem;
+}
+
+.member-course-card {
+  border-top-color: color-mix(in oklab, var(--color-gold) 65%, var(--color-border));
+}
+
+.member-level-pill {
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 0.4rem 0.65rem;
+  background: color-mix(in oklab, var(--color-primary) 8%, transparent);
+}
+
+.member-practice-note {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--color-gold) 10%, transparent), transparent);
+}
+
+.member-document-card::before,
+.member-community-card::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  content: "";
+  background: linear-gradient(var(--color-gold), color-mix(in oklab, var(--color-primary) 55%, var(--color-gold)));
+}
+
+.member-audio-row:has(button[aria-label^="Reproducir"]) {
+  border-left-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-border));
+}
+
 @keyframes member-rise {
   from {
     opacity: 0;
@@ -361,6 +466,20 @@
 
   .member-card:hover {
     transform: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .member-study-surface {
+    background-size: 2rem 100%;
+  }
+
+  .member-section-intro {
+    padding-left: 0.8rem;
+  }
+
+  .member-module-link {
+    min-height: 5.75rem;
   }
 }
 
