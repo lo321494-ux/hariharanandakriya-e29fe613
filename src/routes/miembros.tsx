@@ -248,7 +248,7 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
   };
 
   return (
-    <div className="relative z-10 min-h-[calc(100svh-4.5rem)] bg-background md:min-h-[calc(100svh-6rem)]">
+     <div className="member-app-shell relative z-10 min-h-[calc(100svh-4.5rem)] bg-background md:min-h-[calc(100svh-6rem)]">
        <div className="mx-auto grid w-full min-w-0 max-w-[95rem] lg:grid-cols-[17rem_minmax(0,1fr)]">
          <aside className="relative min-w-0 max-w-full overflow-hidden border-b border-border bg-ink text-ink-foreground lg:min-h-[calc(100svh-6rem)] lg:border-b-0 lg:border-r lg:border-border/20">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-ink-foreground/10 px-4 py-3 lg:hidden">
@@ -722,11 +722,16 @@ function DocumentLibrary({
 
 function DocumentReader({ document, onClose }: { document: MemberResource; onClose: () => void }) {
   useEffect(() => {
+    const previousOverflow = documentElementOverflow();
+    window.document.documentElement.style.overflow = "hidden";
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.document.documentElement.style.overflow = previousOverflow;
+    };
   }, [onClose]);
 
   return (
@@ -767,6 +772,10 @@ function DocumentReader({ document, onClose }: { document: MemberResource; onClo
       </div>
     </div>
   );
+}
+
+function documentElementOverflow() {
+  return window.document.documentElement.style.overflow;
 }
 
 function VideoLibrary() {

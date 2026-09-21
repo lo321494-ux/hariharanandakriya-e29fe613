@@ -227,6 +227,10 @@
   overflow-x: clip;
 }
 
+.member-app-shell {
+  perspective: none !important;
+}
+
 .page-hero {
   position: relative;
   overflow: hidden;
