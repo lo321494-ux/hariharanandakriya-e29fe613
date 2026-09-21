@@ -208,31 +208,31 @@ function MemberApp({ onLogout }: { onLogout: () => void }) {
   const progress = total ? Math.round((completed.length / total) * 100) : 0;
 
   return (
-    <div className="min-h-[calc(100svh-4.5rem)] bg-muted/45 md:min-h-[calc(100svh-6rem)]">
+    <div className="relative z-10 min-h-[calc(100svh-4.5rem)] bg-background md:min-h-[calc(100svh-6rem)]">
       <div className="mx-auto grid max-w-[90rem] lg:grid-cols-[15rem_1fr]">
         <aside className="border-b border-border bg-ink text-ink-foreground lg:min-h-[calc(100svh-6rem)] lg:border-b-0 lg:border-r lg:border-border/20">
-          <div className="flex items-center justify-between px-5 py-5 lg:block lg:px-6 lg:py-8">
+          <div className="hidden items-center justify-between px-5 py-5 lg:block lg:px-6 lg:py-8">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-gold">Campus Kriya</p>
               <p className="mt-1 font-display text-xl">Mi práctica</p>
             </div>
-            <Button variant="ghost" size="icon" onClick={onLogout} className="text-ink-foreground/70 hover:bg-ink-foreground/10 hover:text-ink-foreground lg:hidden" aria-label="Cerrar sesión" title="Cerrar sesión">
-              <LogOut className="h-4 w-4" />
-            </Button>
           </div>
-          <nav className="flex gap-1 overflow-x-auto px-3 pb-4 lg:block lg:space-y-1 lg:px-4">
+          <nav className="grid grid-cols-2 gap-1 px-3 py-4 sm:grid-cols-4 lg:block lg:space-y-1 lg:px-4 lg:pb-4 lg:pt-0">
             {views.map(({ id, label, icon: Icon }) => (
               <Button
                 key={id}
                 type="button"
                 variant="ghost"
                 onClick={() => { setView(id); setQuery(""); }}
-                className={`shrink-0 justify-start ${view === id ? "bg-ink-foreground/12 text-gold" : "text-ink-foreground/65 hover:bg-ink-foreground/10 hover:text-ink-foreground"}`}
+                className={`min-w-0 justify-start ${view === id ? "bg-ink-foreground/12 text-gold" : "text-ink-foreground/65 hover:bg-ink-foreground/10 hover:text-ink-foreground"}`}
               >
                 <Icon className="h-4 w-4" /> {label}
               </Button>
             ))}
           </nav>
+          <Button variant="ghost" size="icon" onClick={onLogout} className="absolute right-4 top-4 text-ink-foreground/70 hover:bg-ink-foreground/10 hover:text-ink-foreground lg:hidden" aria-label="Cerrar sesión" title="Cerrar sesión">
+            <LogOut className="h-4 w-4" />
+          </Button>
           <div className="hidden px-6 py-7 lg:block">
             <div className="flex items-center justify-between text-xs text-ink-foreground/60">
               <span>Tu recorrido</span><span>{progress}%</span>
