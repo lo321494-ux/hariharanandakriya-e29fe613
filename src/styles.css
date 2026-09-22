@@ -974,9 +974,18 @@ main img.rounded-lg:hover {
 
 .book-orange-layout {
   display: grid;
-  grid-template-columns: minmax(14rem, 0.62fr) minmax(0, 1.38fr);
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
   align-items: start;
   gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+@media (max-width: 1024px) {
+  .book-orange-layout { grid-template-columns: minmax(0, 1fr); }
+  .book-cover-pair--orange {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 15rem));
+    justify-content: center;
+  }
 }
 
 .book-cover-pair--orange {
@@ -998,10 +1007,48 @@ main img.rounded-lg:hover {
 .book-page img {
   display: block;
   width: 100%;
-  aspect-ratio: 0.59;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-background);
   border: 1px solid var(--color-border);
   box-shadow: 0 0.8rem 1.8rem -1rem oklch(0.3 0.08 54 / 0.34);
+}
+
+.book-reading-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.book-reading-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-top: 3px solid oklch(0.8 0.15 79 / 0.55);
+  background: color-mix(in oklch, var(--color-card) 94%, var(--color-sand));
+  box-shadow: 0 0.9rem 2.2rem -1.4rem oklch(0.3 0.08 54 / 0.3);
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.book-reading-item:hover {
+  transform: translateY(-3px);
+  border-color: oklch(0.8 0.15 79 / 0.6);
+  box-shadow: 0 1.2rem 2.6rem -1.3rem oklch(0.3 0.08 54 / 0.38);
+}
+
+.book-reading-item__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid oklch(0.8 0.15 79 / 0.5);
+  color: var(--color-primary);
 }
 
 .book-object figcaption,
@@ -1026,6 +1073,9 @@ main img.rounded-lg:hover {
 .book-cover {
   display: block;
   width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-background);
   border: 1px solid oklch(0.72 0.08 84 / 0.36);
   border-radius: 0 3px 3px 0;
   box-shadow: 1.2rem 1.4rem 2.8rem -1rem oklch(0.3 0.08 54 / 0.3), -5px 0 0 oklch(0.8 0.15 79 / 0.16);
