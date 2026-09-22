@@ -148,30 +148,28 @@ function Libros() {
             <p>Unidad III · Kundalini y Kriya Yoga</p>
           </div>
 
-          <div className="book-orange-layout">
-            <div className="book-cover-pair book-cover-pair--orange">
-              <figure className="book-object">
-                <img src={esencia1.url} alt="La Esencia de la Yoga, portada" className="book-cover" />
-                <figcaption>Portada</figcaption>
-              </figure>
-              <figure className="book-object book-object--lifted">
-                <img src={esencia2.url} alt="La Esencia de la Yoga, contraportada" className="book-cover" />
-                <figcaption>Contraportada</figcaption>
-              </figure>
-            </div>
+          <div className="book-cover-pair">
+            <figure className="book-object">
+              <img src={esencia1.url} alt="La Esencia de la Yoga, portada" className="book-cover" />
+              <figcaption>Portada</figcaption>
+            </figure>
+            <figure className="book-object book-object--lifted">
+              <img src={esencia2.url} alt="La Esencia de la Yoga, contraportada" className="book-cover" />
+              <figcaption>Contraportada</figcaption>
+            </figure>
+          </div>
 
-            <div className="book-pages" aria-label="Páginas 60 a 63 de La Esencia de la Yoga">
-              {paginasEsencia.map((pagina) => (
-                <figure key={pagina.page} className="book-page">
-                  <img
-                    src={pagina.src}
-                    alt={`La Esencia de la Yoga, página ${pagina.page}`}
-                    loading="lazy"
-                  />
-                  <figcaption>Página {pagina.page}</figcaption>
-                </figure>
-              ))}
-            </div>
+          <div className="book-pages" aria-label="Páginas 60 a 63 de La Esencia de la Yoga">
+            {paginasEsencia.map((pagina) => (
+              <figure key={pagina.page} className="book-page">
+                <img
+                  src={pagina.src}
+                  alt={`La Esencia de la Yoga, página ${pagina.page}`}
+                  loading="lazy"
+                />
+                <figcaption>Página {pagina.page}</figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
