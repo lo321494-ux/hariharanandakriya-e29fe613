@@ -998,10 +998,48 @@ main img.rounded-lg:hover {
 .book-page img {
   display: block;
   width: 100%;
-  aspect-ratio: 0.59;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-background);
   border: 1px solid var(--color-border);
   box-shadow: 0 0.8rem 1.8rem -1rem oklch(0.3 0.08 54 / 0.34);
+}
+
+.book-reading-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.book-reading-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-top: 3px solid oklch(0.8 0.15 79 / 0.55);
+  background: color-mix(in oklch, var(--color-card) 94%, var(--color-sand));
+  box-shadow: 0 0.9rem 2.2rem -1.4rem oklch(0.3 0.08 54 / 0.3);
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.book-reading-item:hover {
+  transform: translateY(-3px);
+  border-color: oklch(0.8 0.15 79 / 0.6);
+  box-shadow: 0 1.2rem 2.6rem -1.3rem oklch(0.3 0.08 54 / 0.38);
+}
+
+.book-reading-item__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid oklch(0.8 0.15 79 / 0.5);
+  color: var(--color-primary);
 }
 
 .book-object figcaption,
