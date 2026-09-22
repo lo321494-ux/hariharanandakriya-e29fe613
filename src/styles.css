@@ -974,9 +974,18 @@ main img.rounded-lg:hover {
 
 .book-orange-layout {
   display: grid;
-  grid-template-columns: minmax(14rem, 0.62fr) minmax(0, 1.38fr);
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
   align-items: start;
   gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+@media (max-width: 1024px) {
+  .book-orange-layout { grid-template-columns: minmax(0, 1fr); }
+  .book-cover-pair--orange {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 15rem));
+    justify-content: center;
+  }
 }
 
 .book-cover-pair--orange {
