@@ -7,6 +7,8 @@ import palpitar1 from "@/assets/palpitar1.jpg.asset.json";
 import palpitar2 from "@/assets/palpitar2.jpg.asset.json";
 import esencia1 from "@/assets/esencia1.jpg.asset.json";
 import esencia2 from "@/assets/esencia2.jpg.asset.json";
+import discoursesBook from "@/assets/books/discourses.asset.json";
+import equanimousBook from "@/assets/books/equanimous.asset.json";
 
 export const Route = createFileRoute("/libros")({
   head: () => ({
@@ -33,14 +35,19 @@ export const Route = createFileRoute("/libros")({
 });
 
 const lecturas = [
-  { file: "DiscoursesOnKriyaYoga.pdf", label: "DISCURSOS SOBRE KRIYA YOGA (Inglés)" },
-  { file: "EquanimousYogaPhilosophy.pdf", label: "EQUANIMOUS YOGA PHILOSOPHY (Inglés)" },
+  {
+    file: "DiscoursesOnKriyaYoga.pdf",
+    label: "DISCURSOS SOBRE KRIYA YOGA (Inglés)",
+    url: discoursesBook.url,
+  },
+  {
+    file: "EquanimousYogaPhilosophy.pdf",
+    label: "EQUANIMOUS YOGA PHILOSOPHY (Inglés)",
+    url: equanimousBook.url,
+  },
 ];
 
 type Lectura = (typeof lecturas)[number];
-
-const libroUrl = (file: string) =>
-  `https://hariharanandakriya.org/libros/${encodeURIComponent(file)}`;
 
 const portadas = [
   { src: palpitar1.url, alt: "Un Palpitar de Eternidad, portada" },
@@ -130,7 +137,7 @@ function BookReader({ lectura, onClose }: { lectura: Lectura; onClose: () => voi
 
   if (typeof window === "undefined") return null;
 
-  const url = libroUrl(lectura.file);
+  const url = lectura.url;
 
   return createPortal(
     <div
