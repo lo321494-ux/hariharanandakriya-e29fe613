@@ -1,4 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { BookOpen, ExternalLink, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import palpitar1 from "@/assets/palpitar1.jpg.asset.json";
 import palpitar2 from "@/assets/palpitar2.jpg.asset.json";
 import esencia1 from "@/assets/esencia1.jpg.asset.json";
@@ -7,6 +11,8 @@ import esenciaPagina60 from "@/assets/books/esencia-pagina-02.jpg.asset.json";
 import esenciaPagina61 from "@/assets/books/esencia-pagina-01.jpg.asset.json";
 import esenciaPagina62 from "@/assets/books/esencia-pagina-04.jpg.asset.json";
 import esenciaPagina63 from "@/assets/books/esencia-pagina-03.jpg.asset.json";
+import discourses from "@/assets/books/discourses.asset.json";
+import equanimous from "@/assets/books/equanimous.asset.json";
 
 export const Route = createFileRoute("/libros")({
   head: () => ({
@@ -15,13 +21,13 @@ export const Route = createFileRoute("/libros")({
       {
         name: "description",
         content:
-          "Libros de Kriya Yoga: Un Palpitar de Eternidad y La Esencia de la Yoga, con páginas seleccionadas para lectura en línea.",
+          "Libros de Kriya Yoga: Un Palpitar de Eternidad y La Esencia de la Yoga, con páginas seleccionadas y lecturas en línea.",
       },
       { property: "og:title", content: "Libros | FHKY" },
       {
         property: "og:description",
         content:
-          "Un Palpitar de Eternidad y La Esencia de la Yoga, con páginas seleccionadas para lectura.",
+          "Un Palpitar de Eternidad y La Esencia de la Yoga, con páginas seleccionadas y lecturas en línea.",
       },
       { property: "og:image", content: palpitar1.url },
       { name: "twitter:image", content: palpitar1.url },
@@ -39,7 +45,69 @@ const paginasEsencia = [
   { src: esenciaPagina63.url, page: 63 },
 ];
 
+type Lectura = { label: string; url: string; note: string };
+
+const lecturas: Lectura[] = [
+  {
+    label: "Discourses on Kriya Yoga",
+    url: discourses.url,
+    note: "Paramahamsa Hariharananda · lectura completa",
+  },
+  {
+    label: "Equanimous Yoga Philosophy",
+    url: equanimous.url,
+    note: "Enseñanzas del linaje · lectura completa",
+  },
+];
+
+function BookReader({ lectura, onClose }: { lectura: Lectura; onClose: () => void }) {
+  useEffect(() => {
+    const previous = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.documentElement.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  if (typeof window === "undefined") return null;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] flex h-[100dvh] w-full flex-col bg-background"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Lectura: ${lectura.label}`}
+    >
+      <div className="flex flex-wrap items-center gap-3 border-b border-border bg-card px-4 py-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-primary">
+            Libro para leer
+          </p>
+          <p className="line-clamp-2 font-display text-lg text-foreground">{lectura.label}</p>
+        </div>
+        <Button asChild variant="outline" size="sm">
+          <a href={lectura.url} target="_blank" rel="noreferrer">
+            <ExternalLink className="size-4" /> Pantalla completa
+          </a>
+        </Button>
+        <Button variant="secondary" size="sm" onClick={onClose}>
+          <X className="size-4" /> Cerrar libro
+        </Button>
+      </div>
+      <iframe src={lectura.url} title={lectura.label} className="w-full flex-1 border-0" />
+    </div>,
+    document.body,
+  );
+}
+
 function Libros() {
+  const [lecturaActiva, setLecturaActiva] = useState<Lectura | null>(null);
+
   return (
     <div className="section-x py-16 md:py-24">
       <header className="editorial-heading mx-auto max-w-4xl">
@@ -61,7 +129,7 @@ function Libros() {
             <span>Libro I</span>
             <h2 id="palpitar-title">Un Palpitar de Eternidad</h2>
           </div>
-          <div className="book-cover-pair book-cover-pair--green">
+          <div className="book-cover-pair">
             <figure className="book-object">
               <img src={palpitar1.url} alt="Un Palpitar de Eternidad, portada" className="book-cover" />
               <figcaption>Portada</figcaption>
@@ -73,7 +141,7 @@ function Libros() {
           </div>
         </section>
 
-        <section className="book-volume book-volume--reading" aria-labelledby="esencia-title">
+        <section className="book-volume" aria-labelledby="esencia-title">
           <div className="book-volume__heading">
             <span>Libro II · Lectura</span>
             <h2 id="esencia-title">La Esencia de la Yoga</h2>
@@ -106,7 +174,38 @@ function Libros() {
             </div>
           </div>
         </section>
+
+        <section className="book-volume" aria-labelledby="lecturas-title">
+          <div className="book-volume__heading">
+            <span>Lecturas en línea</span>
+            <h2 id="lecturas-title">Libros para leer aquí mismo</h2>
+            <p>Haz clic en un título y se abrirá dentro de la página.</p>
+          </div>
+
+          <div className="book-reading-list">
+            {lecturas.map((lectura) => (
+              <button
+                key={lectura.label}
+                type="button"
+                className="book-reading-item"
+                onClick={() => setLecturaActiva(lectura)}
+              >
+                <span className="book-reading-item__icon">
+                  <BookOpen className="size-5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-display text-lg text-foreground">{lectura.label}</span>
+                  <span className="block text-sm text-muted-foreground">{lectura.note}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
       </div>
+
+      {lecturaActiva && (
+        <BookReader lectura={lecturaActiva} onClose={() => setLecturaActiva(null)} />
+      )}
     </div>
   );
 }
