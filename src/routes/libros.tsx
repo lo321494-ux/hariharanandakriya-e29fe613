@@ -42,6 +42,9 @@ type Lectura = (typeof lecturas)[number];
 const libroUrl = (file: string) =>
   `https://hariharanandakriya.org/libros/${encodeURIComponent(file)}`;
 
+const lectorUrl = (file: string) =>
+  `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(libroUrl(file))}`;
+
 const portadas = [
   { src: palpitar1.url, alt: "Un Palpitar de Eternidad, portada" },
   { src: palpitar2.url, alt: "Un Palpitar de Eternidad, contraportada" },
@@ -158,7 +161,11 @@ function BookReader({ lectura, onClose }: { lectura: Lectura; onClose: () => voi
             </Button>
           </div>
         </div>
-        <iframe title={`Libro: ${lectura.label}`} src={url} className="min-h-0 w-full flex-1 bg-muted" />
+        <iframe
+          title={`Libro: ${lectura.label}`}
+          src={lectorUrl(lectura.file)}
+          className="min-h-0 w-full flex-1 bg-muted"
+        />
       </div>
     </div>,
     window.document.body,
