@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
+import type { PDFDocumentLoadingTask, PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 function PdfPage({ document, pageNumber }: { document: PDFDocumentProxy; pageNumber: number }) {
@@ -72,14 +72,13 @@ export function PdfBookReader({ url, title }: { url: string; title: string }) {
 
   useEffect(() => {
     let active = true;
-    let loadedDocument: PDFDocumentProxy | null = null;
+    let loadingTask: PDFDocumentLoadingTask | null = null;
 
     void import("pdfjs-dist").then((pdfjs) => {
       pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
-      const task = pdfjs.getDocument(url);
-      return task.promise;
+      loadingTask = pdfjs.getDocument({ url });
+      return loadingTask.promise;
     }).then((pdf) => {
-      loadedDocument = pdf;
       if (active) setDocument(pdf);
     }).catch(() => {
       if (active) setError(true);
@@ -87,7 +86,7 @@ export function PdfBookReader({ url, title }: { url: string; title: string }) {
 
     return () => {
       active = false;
-      void loadedDocument?.destroy();
+      void loadingTask?.destroy();
     };
   }, [url]);
 
