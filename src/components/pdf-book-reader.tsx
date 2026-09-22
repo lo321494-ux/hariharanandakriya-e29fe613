@@ -74,9 +74,15 @@ export function PdfBookReader({ url, title }: { url: string; title: string }) {
     let active = true;
     let loadingTask: PDFDocumentLoadingTask | null = null;
 
-    void import("pdfjs-dist").then((pdfjs) => {
+    void Promise.all([
+      import("pdfjs-dist"),
+      fetch(url, { cache: "no-store" }).then((response) => {
+        if (!response.ok) throw new Error("No fue posible descargar el libro");
+        return response.arrayBuffer();
+      }),
+    ]).then(([pdfjs, file]) => {
       pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
-      loadingTask = pdfjs.getDocument({ url });
+      loadingTask = pdfjs.getDocument({ data: new Uint8Array(file) });
       return loadingTask.promise;
     }).then((pdf) => {
       if (active) setDocument(pdf);
