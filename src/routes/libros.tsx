@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { BookOpen, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PdfBookReader } from "@/components/pdf-book-reader";
 import palpitar1 from "@/assets/palpitar1.jpg.asset.json";
 import palpitar2 from "@/assets/palpitar2.jpg.asset.json";
 import esencia1 from "@/assets/esencia1.jpg.asset.json";
@@ -99,7 +100,9 @@ function BookReader({ lectura, onClose }: { lectura: Lectura; onClose: () => voi
           <X className="size-4" /> Cerrar libro
         </Button>
       </div>
-      <iframe src={lectura.url} title={lectura.label} className="w-full flex-1 border-0" />
+      <div className="min-h-0 flex-1 overflow-y-auto bg-muted/40 px-2 py-4 sm:px-5">
+        <PdfBookReader url={lectura.url} title={lectura.label} />
+      </div>
     </div>,
     document.body,
   );

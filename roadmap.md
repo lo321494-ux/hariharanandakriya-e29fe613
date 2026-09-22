@@ -16,3 +16,5 @@
 - [x] Integrar las lecturas junto al libro naranja sin mover el libro verde
 - [x] Reemplazar las lecturas anteriores por las páginas ordenadas del Drive junto al libro naranja
 - [x] Igualar las portadas y mostrar las páginas del libro naranja en una galería lateral
+
+- [x] Mostrar todas las páginas de los libros públicos en el lector integrado

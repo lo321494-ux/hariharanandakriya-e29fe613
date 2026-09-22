@@ -1050,6 +1050,44 @@ main img.rounded-lg:hover {
   color: var(--color-primary);
 }
 
+.public-pdf-document {
+  display: grid;
+  width: min(100%, 64rem);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-inline: auto;
+}
+
+.public-pdf-page {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.public-pdf-page canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: var(--color-background);
+  box-shadow: 0 1rem 2.5rem -1.25rem oklch(0.3 0.08 54 / 0.38);
+}
+
+.public-pdf-page figcaption {
+  color: var(--color-muted-foreground);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.public-pdf-status {
+  display: grid;
+  min-height: 45vh;
+  place-items: center;
+  color: var(--color-muted-foreground);
+  text-align: center;
+}
+
 .book-object figcaption,
 .book-page figcaption {
   margin-top: 0.65rem;
