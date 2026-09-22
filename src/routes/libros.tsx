@@ -77,11 +77,34 @@ function Libros() {
       </p>
 
       <div className="book-display mx-auto mt-12 max-w-4xl">
-        {portadaPrincipal ? (
-          <figure className="book-featured">
-            <img src={portadaPrincipal.src} alt={portadaPrincipal.alt} className="book-cover" />
-          </figure>
-        ) : null}
+        <div className="book-primary-row">
+          {portadaPrincipal ? (
+            <figure className="book-featured">
+              <img src={portadaPrincipal.src} alt={portadaPrincipal.alt} className="book-cover" />
+            </figure>
+          ) : null}
+
+          <section className="paper-panel book-reading-panel">
+            <h2 className="font-display text-2xl text-primary">
+              Seleccione el libro para leer
+            </h2>
+            <ul className="mt-4 divide-y divide-border rounded-lg border border-gold/30 bg-card/85 backdrop-blur-xl">
+              {lecturas.map((l) => (
+                <li key={l.file}>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setLecturaActiva(l)}
+                    className="h-auto w-full justify-start rounded-none px-4 py-3 text-sm font-normal text-muted-foreground hover:bg-accent hover:text-primary"
+                  >
+                    <BookOpen className="h-4 w-4 shrink-0 text-primary" />
+                    <span className="text-left">{l.label}</span>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
         <div className="book-secondary">
           {portadas.slice(1).map((p, index) => (
             <figure key={p.alt} className={index % 2 ? "book-object book-object--lifted" : "book-object"}>
@@ -90,27 +113,6 @@ function Libros() {
           ))}
         </div>
       </div>
-
-      <section className="paper-panel mx-auto mt-16 max-w-2xl">
-        <h2 className="font-display text-2xl text-primary">
-          Seleccione el libro para leer
-        </h2>
-        <ul className="mt-4 divide-y divide-border rounded-lg border border-gold/30 bg-card/85 backdrop-blur-xl">
-          {lecturas.map((l) => (
-            <li key={l.file}>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setLecturaActiva(l)}
-                className="h-auto w-full justify-start rounded-none px-4 py-3 text-sm font-normal text-muted-foreground hover:bg-accent hover:text-primary"
-              >
-                <BookOpen className="h-4 w-4 shrink-0 text-primary" />
-                <span className="text-left">{l.label}</span>
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </section>
 
       {lecturaActiva ? (
         <BookReader lectura={lecturaActiva} onClose={() => setLecturaActiva(null)} />

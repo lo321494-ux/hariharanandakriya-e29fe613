@@ -13,3 +13,4 @@
 - [x] Abrir los libros públicos dentro de la página web
 - [x] Corregir el lector de libros para no depender de Google Docs
 - [x] Alojar los libros dentro del sitio para evitar bloqueos externos de Chrome
+- [x] Integrar las lecturas junto al libro naranja sin mover el libro verde
