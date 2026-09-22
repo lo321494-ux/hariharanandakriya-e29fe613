@@ -11,3 +11,4 @@
 - [x] Corregir y reorganizar la reproducción y descarga de audios y documentos
 - [x] Simplificar la pantalla de ingreso para mostrar únicamente Bienvenido y el formulario
 - [x] Abrir los libros públicos dentro de la página web
+- [x] Corregir el lector de libros para no depender de Google Docs
