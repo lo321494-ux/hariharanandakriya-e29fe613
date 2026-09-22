@@ -17,4 +17,4 @@
 - [x] Reemplazar las lecturas anteriores por las páginas ordenadas del Drive junto al libro naranja
 - [x] Igualar las portadas y mostrar las páginas del libro naranja en una galería lateral
 
-- [ ] Mostrar todas las páginas de los libros públicos en el lector integrado
+- [x] Mostrar todas las páginas de los libros públicos en el lector integrado
