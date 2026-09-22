@@ -91,14 +91,15 @@ function Libros() {
         <ul className="mt-4 divide-y divide-border rounded-lg border border-gold/30 bg-card/85 backdrop-blur-xl">
           {lecturas.map((l) => (
             <li key={l.file}>
-              <button
+              <Button
                 type="button"
+                variant="ghost"
                 onClick={() => setLecturaActiva(l)}
-                className="flex items-center gap-3 px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
+                className="h-auto w-full justify-start rounded-none px-4 py-3 text-sm font-normal text-muted-foreground hover:bg-accent hover:text-primary"
               >
                 <BookOpen className="h-4 w-4 shrink-0 text-primary" />
                 <span className="text-left">{l.label}</span>
-              </button>
+              </Button>
             </li>
           ))}
         </ul>
